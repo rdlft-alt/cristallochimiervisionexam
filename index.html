@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Révisions Cristallochimie - CHI101 / CHI102</title>
-      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+     
     <style>
         :root {
             --primary: #2563eb;
@@ -211,27 +219,27 @@
             <div class="grid-cards" id="cardsGrid">
                 <div class="card" data-keywords="cristal solide ordre">
                     <h3>Cristal</h3>
-                    <p>Solide présentant un ordre à grande distance, engendré par la répétition infinie et périodique d'un motif suivant 3 directions non coplanaires[span_0](start_span)[span_0](end_span).</p>
+                    <p>Solide présentant un ordre à grande distance, engendré par la répétition infinie et périodique d'un motif suivant 3 directions non coplanaires.</p>
                 </div>
                 <div class="card" data-keywords="reseau nœuds points">
                     <h3>Réseau</h3>
-                    <p>Ensemble infini de points périodiques dans l'espace appelés <strong>nœuds</strong>, définis par des vecteurs de translation $\vec{n} = u\vec{a} + v\vec{b} + w\vec{c}$[span_1](start_span)[span_1](end_span).</p>
+                    <p>Ensemble infini de points périodiques dans l'espace appelés <strong>nœuds</strong>, définis par des vecteurs de translation $\vec{n} = u\vec{a} + v\vec{b} + w\vec{c}$.</p>
                 </div>
                 <div class="card" data-keywords="motif atome molecules groupement">
                     <h3>Motif</h3>
-                    <p>Entité chimique (atome, molécule ou ion / groupe formulaire) associée à chaque nœud du réseau pour constituer le cristal[span_2](start_span)[span_2](end_span).</p>
+                    <p>Entité chimique (atome, molécule ou ion / groupe formulaire) associée à chaque nœud du réseau pour constituer le cristal.</p>
                 </div>
                 <div class="card" data-keywords="maille volume parallélépipède paramètres">
                     <h3>Maille</h3>
-                    <p>Plus petit volume élémentaire (parallélépipède) caractérisé par 3 longueurs ($a, b, c$) et 3 angles ($\alpha, \beta, \gamma$) dont les translations pavent tout l'espace[span_3](start_span)[span_3](end_span).</p>
+                    <p>Plus petit volume élémentaire (parallélépipède) caractérisé par 3 longueurs ($a, b, c$) et 3 angles ($\alpha, \beta, \gamma$) dont les translations pavent tout l'espace.</p>
                 </div>
                 <div class="card" data-keywords="coordinence ic voisins liaison">
                     <h3>Coordinence ($I_C$)</h3>
-                    <p>Nombre de plus proches voisins équidistants entourant directement un atome ou un ion dans la structure[span_4](start_span)[span_4](end_span).</p>
+                    <p>Nombre de plus proches voisins équidistants entourant directement un atome ou un ion dans la structure.</p>
                 </div>
                 <div class="card" data-keywords="bravais systèmes modes p i f c">
                     <h3>Réseaux de Bravais</h3>
-                    <p>Combinaison des 7 systèmes cristallins et des 4 modes de réseau ($\mathbf{P}, \mathbf{I}, \mathbf{F}, \mathbf{C}$), soit exactement 14 réseaux distincts[span_5](start_span)[span_5](end_span).</p>
+                    <p>Combinaison des 7 systèmes cristallins et des 4 modes de réseau ($\mathbf{P}, \mathbf{I}, \mathbf{F}, \mathbf{C}$), soit exactement 14 réseaux distincts.</p>
                 </div>
             </div>
         </section>
@@ -253,26 +261,26 @@
                         <tr>
                             <td><strong>P</strong></td>
                             <td>Primitif (Simple)</td>
-                            <td>Nœuds uniquement aux sommets de la maille[span_6](start_span)[span_6](end_span).</td>
+                            <td>Nœuds uniquement aux sommets de la maille.</td>
                             <td>Polonium ($Po$), Cubique simple</td>
                         </tr>
                         <tr>
                             <td><strong>I</strong></td>
                             <td>Centré</td>
-                            <td>Sommets + 1 nœud au centre géométrique du cube[span_7](start_span)[span_7](end_span).</td>
+                            <td>Sommets + 1 nœud au centre géométrique du cube.</td>
                             <td>Niobium ($Nb$), Natrium ($Na$)</td>
                         </tr>
                         <tr>
                             <td><strong>F</strong></td>
                             <td>Faces centrées</td>
-                            <td>Sommets + 1 nœud au centre de chacune des 6 faces[span_8](start_span)[span_8](end_span).</td>
+                            <td>Sommets + 1 nœud au centre de chacune des 6 faces.</td>
                             <td>Cuivre ($Cu$), Or ($Au$), Fer $\gamma$</td>
                         </tr>
                         <tr>
                             <td><strong>C</strong></td>
                             <td>2 faces opposées centrées</td>
-                            <td>Sommets + 1 nœud au centre de 2 faces opposées[span_9](start_span)[span_9](end_span).</td>
-                            <td>N'existe pas en système cubique (symétrie incompatible)[span_10](start_span)[span_10](end_span).</td>
+                            <td>Sommets + 1 nœud au centre de 2 faces opposées.</td>
+                            <td>N'existe pas en système cubique (symétrie incompatible).</td>
                         </tr>
                     </tbody>
                 </table>
@@ -281,7 +289,7 @@
                 <!-- SECTION : Structures Métalliques -->
         <section>
             <h2>4. Les Structures Métalliques et Leurs Propriétés</h2>
-            <p style="margin-bottom: 20px; color: var(--text-muted);">Les métaux et alliages privilégient des structures à densité élevée[span_0](start_span)[span_0](end_span). Les atomes y sont assimilés à des sphères rigides indéformables[span_1](start_span)[span_1](end_span).</p>
+            <p style="margin-bottom: 20px; color: var(--text-muted);">Les métaux et alliages privilégient des structures à densité élevée. Les atomes y sont assimilés à des sphères rigides indéformables.</p>
             
             <!-- Tableau récapitulatif des structures métalliques -->
             <div class="table-container">
@@ -299,35 +307,35 @@
                     <tbody>
                         <tr>
                             <td><strong>Cubique Simple (CS)</strong></td>
-                            <td>Mode P<br>$Z = 1$ atom/maille[span_2](start_span)[span_2](end_span)</td>
-                            <td>$6$[span_3](start_span)[span_3](end_span)</td>
-                            <td>$a = 2R$[span_4](start_span)[span_4](end_span)</td>
-                            <td>$52\%$[span_5](start_span)[span_5](end_span)</td>
-                            <td>Polonium ($Po$) uniquement[span_6](start_span)[span_6](end_span). Faible remplissage de l'espace.</td>
+                            <td>Mode P<br>$Z = 1$ atom/maille</td>
+                            <td>$6$</td>
+                            <td>$a = 2R$</td>
+                            <td>$52\%$</td>
+                            <td>Polonium ($Po$) uniquement. Faible remplissage de l'espace.</td>
                         </tr>
                         <tr>
                             <td><strong>Cubique Centré (CC)</strong></td>
-                            <td>Mode I<br>$Z = 2$ atoms/maille[span_7](start_span)[span_7](end_span)</td>
-                            <td>$8$[span_8](start_span)[span_8](end_span)</td>
-                            <td>$4R = a\sqrt{3}$[span_9](start_span)[span_9](end_span)</td>
-                            <td>$68\%$[span_10](start_span)[span_10](end_span)</td>
-                            <td>Alcalins ($Na$), $W$, $Fe_\alpha$[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span). Moins compact que CFC et HC[span_13](start_span)[span_13](end_span).</td>
+                            <td>Mode I<br>$Z = 2$ atoms/maille</td>
+                            <td>$8$</td>
+                            <td>$4R = a\sqrt{3}$</td>
+                            <td>$68\%$</td>
+                            <td>Alcalins ($Na$), $W$, $Fe_\alpha$. Moins compact que CFC et HC.</td>
                         </tr>
                         <tr>
                             <td><strong>Cubique Faces Centrées (CFC)</strong></td>
-                            <td>Mode F<br>$Z = 4$ atoms/maille[span_14](start_span)[span_14](end_span)</td>
-                            <td>$12$[span_15](start_span)[span_15](end_span)</td>
-                            <td>$4R = a\sqrt{2}$[span_16](start_span)[span_16](end_span)</td>
-                            <td>$74\%$ (Maximale)[span_17](start_span)[span_17](end_span)</td>
-                            <td>Cuivre ($Cu$), Or ($Au$), Argent ($Ag$), Al, $Fe_\gamma$[span_18](start_span)[span_18](end_span)[span_19](start_span)[span_19](end_span). Empilement type $ABCA...$[span_20](start_span)[span_20](end_span).</td>
+                            <td>Mode F<br>$Z = 4$ atoms/maille</td>
+                            <td>$12$</td>
+                            <td>$4R = a\sqrt{2}$</td>
+                            <td>$74\%$ (Maximale)</td>
+                            <td>Cuivre ($Cu$), Or ($Au$), Argent ($Ag$), Al, $Fe_\gamma$. Empilement type $ABCA...$.</td>
                         </tr>
                         <tr>
                             <td><strong>Hexagonale Compacte (HC)</strong></td>
-                            <td>Prisme à base losange<br>$Z = 2$ atoms/maille[span_21](start_span)[span_21](end_span)</td>
-                            <td>$12$[span_22](start_span)[span_22](end_span)</td>
+                            <td>Prisme à base losange<br>$Z = 2$ atoms/maille</td>
+                            <td>$12$</td>
                             <td>—</td>
-                            <td>$74\%$ (Maximale)[span_23](start_span)[span_23](end_span)</td>
-                            <td>Magnésium ($Mg$), Zinc ($Zn$), Titane ($Ti$)[span_24](start_span)[span_24](end_span). Empilement type $ABA...$[span_25](start_span)[span_25](end_span).</td>
+                            <td>$74\%$ (Maximale)</td>
+                            <td>Magnésium ($Mg$), Zinc ($Zn$), Titane ($Ti$). Empilement type $ABA...$.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -337,19 +345,19 @@
             <div class="grid-cards" style="margin-top: 20px;">
                 <div class="card" data-keywords="sites octaédriques oh cfc arêtes centre">
                     <h3>Sites Octaédriques ($O_h$) en CFC</h3>
-                    <p>Situés au centre du cube et au milieu de chaque arête[span_26](start_span)[span_26](end_span). 
-                    <br>• <strong>Coordinence :</strong> $6$ (entouré par 6 atomes)[span_27](start_span)[span_27](end_span).
-                    <br>• <strong>Nombre par maille :</strong> $4$ sites au total ($1 + 12 \times 1/4$)[span_28](start_span)[span_28](end_span).</p>
+                    <p>Situés au centre du cube et au milieu de chaque arête. 
+                    <br>• <strong>Coordinence :</strong> $6$ (entouré par 6 atomes).
+                    <br>• <strong>Nombre par maille :</strong> $4$ sites au total ($1 + 12 \times 1/4$).</p>
                 </div>
                 <div class="card" data-keywords="sites tétraédriques td cfc intérieurs">
                     <h3>Sites Tétraédriques ($T_d$) en CFC</h3>
-                    <p>Situés au centre des 8 petits cubes formés en divisant la maille[span_29](start_span)[span_29](end_span). 
-                    <br>• <strong>Coordinence :</strong> $4$ (entouré par 4 atomes)[span_30](start_span)[span_30](end_span).
-                    <br>• <strong>Nombre par maille :</strong> $8$ sites au total[span_31](start_span)[span_31](end_span).</p>
+                    <p>Situés au centre des 8 petits cubes formés en divisant la maille. 
+                    <br>• <strong>Coordinence :</strong> $4$ (entouré par 4 atomes).
+                    <br>• <strong>Nombre par maille :</strong> $8$ sites au total.</p>
                 </div>
                 <div class="card" data-keywords="alliages insertion substitution compacité">
                     <h3>Alliages & Insertion</h3>
-                    <p>Dans les structures compactes, les petits atomes (carbone, hydrogène, azote) peuvent s'insérer partiellement dans les sites interstitiels pour former des <strong>alliages d'insertion</strong> (ex: aciers, fontes) et modifier les propriétés mécaniques[span_32](start_span)[span_32](end_span).</p>
+                    <p>Dans les structures compactes, les petits atomes (carbone, hydrogène, azote) peuvent s'insérer partiellement dans les sites interstitiels pour former des <strong>alliages d'insertion</strong> (ex: aciers, fontes) et modifier les propriétés mécaniques.</p>
                 </div>
             </div>
         </section>
@@ -358,7 +366,7 @@
         <!-- NOUVELLE SECTION : Les 7 Systèmes Cristallins & 14 Réseaux de Bravais Détaillés -->
         <section>
             <h2>3. Les 7 Systèmes Cristallins et les 14 Réseaux de Bravais</h2>
-            <p style="margin-bottom: 15px; color: var(--text-muted);">En combinant la symétrie des 7 systèmes cristallins avec les 4 modes de réseau possibles, on obtient exactement <strong>14 réseaux de Bravais</strong>[span_11](start_span)[span_11](end_span).</p>
+            <p style="margin-bottom: 15px; color: var(--text-muted);">En combinant la symétrie des 7 systèmes cristallins avec les 4 modes de réseau possibles, on obtient exactement <strong>14 réseaux de Bravais</strong>.</p>
             <div class="table-container">
                 <table>
                     <thead>
@@ -419,18 +427,18 @@
                 <!-- SECTION : Sites Interstitiels et Limites de Rayons -->
         <section>
             <h2>Sites Interstitiels et Limites de Rayons Ioniques</h2>
-            <p style="margin-bottom: 20px; color: var(--text-muted);">Dans les structures compactes ou pseudo-compactes, les sites interstitiels désignent des positions particulières formées par les atomes ou ions principaux constituant la structure[span_0](start_span)[span_0](end_span).</p>
+            <p style="margin-bottom: 20px; color: var(--text-muted);">Dans les structures compactes ou pseudo-compactes, les sites interstitiels désignent des positions particulières formées par les atomes ou ions principaux constituant la structure.</p>
 
             <div class="grid-cards">
                 <div class="card">
                     <h3>Sites Tétraédriques ($T_d$)</h3>
-                    <p>• <strong>Coordinence / IC :</strong> $4$ (situés au centre d'un tétraèdre régulier dont les sommets sont 4 sphères tangentes)[span_1](start_span)[span_1](end_span).
-                    <br>• <strong>Nombre en CFC :</strong> $8$ sites par maille (centres des 8 petits cubes d'arête $a/2$)[span_2](start_span)[span_2](end_span).</p>
+                    <p>• <strong>Coordinence / IC :</strong> $4$ (situés au centre d'un tétraèdre régulier dont les sommets sont 4 sphères tangentes).
+                    <br>• <strong>Nombre en CFC :</strong> $8$ sites par maille (centres des 8 petits cubes d'arête $a/2$).</p>
                 </div>
                 <div class="card">
                     <h3>Sites Octaédriques ($O_h$)</h3>
-                    <p>• <strong>Coordinence / IC :</strong> $6$ (situés au centre d'un octaèdre régulier dont les sommets sont 6 sphères tangentes)[span_3](start_span)[span_3](end_span).
-                    <br>• <strong>Nombre en CFC :</strong> $4$ sites par maille ($1$ au centre du cube + $12 \times 1/4$ au milieu des arêtes)[span_4](start_span)[span_4](end_span).</p>
+                    <p>• <strong>Coordinence / IC :</strong> $6$ (situés au centre d'un octaèdre régulier dont les sommets sont 6 sphères tangentes).
+                    <br>• <strong>Nombre en CFC :</strong> $4$ sites par maille ($1$ au centre du cube + $12 \times 1/4$ au milieu des arêtes).</p>
                 </div>
                 <div class="card">
                     <h3>Rapports Limites et Coordinences ($r^+ / r^-$)</h3>
@@ -444,27 +452,27 @@
         <!-- SECTION 1 : Maîtriser l'écriture des coordonnées juste nécessaires -->
         <section>
             <h2>1. Méthode : Écrire les coordonnées juste nécessaires</h2>
-            <p style="margin-bottom: 15px; color: var(--text-muted);">Dans une structure cristalline, les atomes d'une même classe se déduisent les uns des autres par les translations du réseau de Bravais. Il est donc inutile de tous les lister[span_0](start_span)[span_0](end_span).</p>
+            <p style="margin-bottom: 15px; color: var(--text-muted);">Dans une structure cristalline, les atomes d'une même classe se déduisent les uns des autres par les translations du réseau de Bravais. Il est donc inutile de tous les lister.</p>
             
             <div class="grid-cards">
                 <div class="card">
                     <h3>Règles d'Or des Coordonnées</h3>
-                    <p>• <strong>Définition :</strong> Les coordonnées fractionnaires $(x, y, z)$ sont exprimées dans la base des vecteurs $(\vec{a}, \vec{b}, \vec{c})$ et sont sans dimension[span_1](start_span)[span_1](end_span).
-                    <br>• <strong>Intervalle :</strong> Elles sont strictement comprises entre $0$ et $1$ ($[0;1[$)[span_2](start_span)[span_2](end_span).
-                    <br>• <strong>Économie :</strong> On ne donne que les coordonnées des atomes du motif de base qui ne peuvent pas être générés par les translations du réseau[span_3](start_span)[span_3](end_span).</p>
+                    <p>• <strong>Définition :</strong> Les coordonnées fractionnaires $(x, y, z)$ sont exprimées dans la base des vecteurs $(\vec{a}, \vec{b}, \vec{c})$ et sont sans dimension.
+                    <br>• <strong>Intervalle :</strong> Elles sont strictement comprises entre $0$ et $1$ ($[0;1[$).
+                    <br>• <strong>Économie :</strong> On ne donne que les coordonnées des atomes du motif de base qui ne peuvent pas être générés par les translations du réseau.</p>
                 </div>
                 <div class="card">
                     <h3>Exemples Types par Mode de Réseau</h3>
                     <p>• <strong>Réseau Primitif (P) :</strong> Un seul atome à l'origine $\rightarrow (0,0,0)$.
-                    <br>• <strong>Réseau Centré (I) :</strong> L'origine + la translation du mode I $\rightarrow (0,0,0)$ et $(\frac{1}{2}, \frac{1}{2}, \frac{1}{2})$ (ou écriture abrégée $(0,0,0) + I$)[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span).
-                    <br>• <strong>Réseau Faces Centrées (F) :</strong> L'origine + les 3 faces $\rightarrow (0,0,0)$, $(\frac{1}{2}, \frac{1}{2}, 0)$, $(\frac{1}{2}, 0, \frac{1}{2})$, $(0, \frac{1}{2}, \frac{1}{2})$ (ou $(0,0,0) + F$)[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span).</p>
+                    <br>• <strong>Réseau Centré (I) :</strong> L'origine + la translation du mode I $\rightarrow (0,0,0)$ et $(\frac{1}{2}, \frac{1}{2}, \frac{1}{2})$ (ou écriture abrégée $(0,0,0) + I$).
+                    <br>• <strong>Réseau Faces Centrées (F) :</strong> L'origine + les 3 faces $\rightarrow (0,0,0)$, $(\frac{1}{2}, \frac{1}{2}, 0)$, $(\frac{1}{2}, 0, \frac{1}{2})$, $(0, \frac{1}{2}, \frac{1}{2})$ (ou $(0,0,0) + F$).</p>
                 </div>
                 <div class="card">
                     <h3>Cas d'un Cristal Ionique Composé (ex: $\text{KNiF}_3$)</h3>
                     <p>Pour chaque type d'ion, on applique son propre sous-réseau :
-                    <br>• $\text{Ni}^{2+}$ aux sommets : $(0,0,0)$[span_8](start_span)[span_8](end_span)
-                    <br>• $\text{K}^+$ au centre : $(\frac{1}{2}, \frac{1}{2}, \frac{1}{2})$[span_9](start_span)[span_9](end_span)
-                    <br>• $\text{F}^-$ sur les arêtes : $(\frac{1}{2}, 0, 0)$, $(0, \frac{1}{2}, 0)$, $(0, 0, \frac{1}{2})$[span_10](start_span)[span_10](end_span)</p>
+                    <br>• $\text{Ni}^{2+}$ aux sommets : $(0,0,0)$
+                    <br>• $\text{K}^+$ au centre : $(\frac{1}{2}, \frac{1}{2}, \frac{1}{2})$
+                    <br>• $\text{F}^-$ sur les arêtes : $(\frac{1}{2}, 0, 0)$, $(0, \frac{1}{2}, 0)$, $(0, 0, \frac{1}{2})$</p>
                 </div>
             </div>
         </section>
@@ -472,7 +480,7 @@
         <!-- SECTION 2 : Toutes les formules de masse volumique et cas d'examen -->
         <section>
             <h2>2. Formulaire Complet : La Masse Volumique ($\rho$)</h2>
-            <p style="margin-bottom: 15px; color: var(--text-muted);">La formule de base relie la masse de la maille à son volume[span_11](start_span)[span_11](end_span). En examen, toutes les variables peuvent être isolées.</p>
+            <p style="margin-bottom: 15px; color: var(--text-muted);">La formule de base relie la masse de la maille à son volume. En examen, toutes les variables peuvent être isolées.</p>
 
             <div class="table-container">
                 <table>
@@ -486,10 +494,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>$$\rho = \frac{Z \cdot M}{N_a \cdot V_m}$$<br>(avec $V_m = a^3$ pour le système cubique)[span_12](start_span)[span_12](end_span)</td>
-                            <td>$$Z = \frac{\rho \cdot N_a \cdot a^3}{M}$$<br><em>(Permet d'identifier si un métal est CC ($Z=2$) ou CFC ($Z=4$) en connaissant sa masse volumique mesurée)[span_13](start_span)[span_13](end_span).</em></td>
-                            <td>$$a = \left( \frac{Z \cdot M}{\rho \cdot N_a} \right)^{1/3}$$<br><em>(Utilisé lorsqu'on connaît $\rho$ pour retrouver la taille de la maille)[span_14](start_span)[span_14](end_span).</em></td>
-                            <td>• $a$ en $\text{cm}$ si $\rho$ en $\text{g}\cdot\text{cm}^{-3}$ (1 $\text{Å} = 10^{-8}$ $\text{cm}$)[span_15](start_span)[span_15](end_span)[span_16](start_span)[span_16](end_span).<br>• $M$ : masse molaire du groupe formulaire en $\text{g}\cdot\text{mol}^{-1}$[span_17](start_span)[span_17](end_span).<br>• $N_a = 6,022 \cdot 10^{23}$ $\text{mol}^{-1}$[span_18](start_span)[span_18](end_span)[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span).</td>
+                            <td>$$\rho = \frac{Z \cdot M}{N_a \cdot V_m}$$<br>(avec $V_m = a^3$ pour le système cubique)</td>
+                            <td>$$Z = \frac{\rho \cdot N_a \cdot a^3}{M}$$<br><em>(Permet d'identifier si un métal est CC ($Z=2$) ou CFC ($Z=4$) en connaissant sa masse volumique mesurée).</em></td>
+                            <td>$$a = \left( \frac{Z \cdot M}{\rho \cdot N_a} \right)^{1/3}$$<br><em>(Utilisé lorsqu'on connaît $\rho$ pour retrouver la taille de la maille).</em></td>
+                            <td>• $a$ en $\text{cm}$ si $\rho$ en $\text{g}\cdot\text{cm}^{-3}$ (1 $\text{Å} = 10^{-8}$ $\text{cm}$).<br>• $M$ : masse molaire du groupe formulaire en $\text{g}\cdot\text{mol}^{-1}$.<br>• $N_a = 6,022 \cdot 10^{23}$ $\text{mol}^{-1}$.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -499,26 +507,26 @@
         <!-- SECTION 3 : Exploiter et démontrer les relations de tangence -->
         <section>
             <h2>3. Géométrie : Exploiter et Démontrer les Relations de Tangence</h2>
-            <p style="margin-bottom: 15px; color: var(--text-muted);">La cohésion géométrique repose sur le contact strict entre sphères rigides (tangence) le long d'axes de symétrie précis de la maille[span_21](start_span)[span_21](end_span).</p>
+            <p style="margin-bottom: 15px; color: var(--text-muted);">La cohésion géométrique repose sur le contact strict entre sphères rigides (tangence) le long d'axes de symétrie précis de la maille.</p>
 
             <div class="grid-cards">
                 <div class="card">
                     <h3>1. Cubique Simple (CS)</h3>
                     <p>• <strong>Contact :</strong> Le long de l'arête du cube $a$.
                     <br>• <strong>Démonstration :</strong> Deux atomes voisins se touchent sur l'arête, donc la distance entre leurs centres est l'arête elle-même.
-                    <br>• <strong>Relation :</strong> $a = 2R$[span_22](start_span)[span_22](end_span).</p>
+                    <br>• <strong>Relation :</strong> $a = 2R$.</p>
                 </div>
                 <div class="card">
                     <h3>2. Cubique Centré (CC)</h3>
                     <p>• <strong>Contact :</strong> Le long de la grande diagonale principale du cube (qui mesure $a\sqrt{3}$). L'atome du centre touche les 8 atomes des sommets.
                     <br>• <strong>Démonstration :</strong> La diagonale traverse un sommet, passe par le centre (diamètre $2R$) et arrive à l'autre sommet ($2R$).
-                    <br>• <strong>Relation :</strong> $4R = a\sqrt{3}$[span_23](start_span)[span_23](end_span).</p>
+                    <br>• <strong>Relation :</strong> $4R = a\sqrt{3}$.</p>
                 </div>
                 <div class="card">
                     <h3>3. Cubique Faces Centrées (CFC)</h3>
                     <p>• <strong>Contact :</strong> Le long de la diagonale d'une face du cube (qui mesure $a\sqrt{2}$). Les atomes des faces touchent ceux des sommets adjacents.
                     <br>• <strong>Démonstration :</strong> La diagonale de face contient un rayon du sommet, le diamètre de l'atome de face ($2R$), et un rayon de l'autre sommet.
-                    <br>• <strong>Relation :</strong> $4R = a\sqrt{2}$[span_24](start_span)[span_24](end_span).</p>
+                    <br>• <strong>Relation :</strong> $4R = a\sqrt{2}$.</p>
                 </div>
             </div>
         </section>
@@ -526,7 +534,7 @@
         <!-- SECTION 4 : Calcul rigoureux de la compacité -->
         <section>
             <h2>4. Démonstration Rigoureuse de la Compacité ($C$)</h2>
-            <p style="margin-bottom: 15px; color: var(--text-muted);">La compacité est le taux de remplissage de l'espace : le rapport entre le volume occupé par les sphères dans la maille et le volume total de la maille[span_25](start_span)[span_25](end_span).</p>
+            <p style="margin-bottom: 15px; color: var(--text-muted);">La compacité est le taux de remplissage de l'espace : le rapport entre le volume occupé par les sphères dans la maille et le volume total de la maille.</p>
 
             <div class="table-container">
                 <table>
@@ -539,8 +547,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>$$C = \frac{V_{\text{atomes}}}{V_{\text{maille}}} = \frac{Z \cdot \left(\frac{4}{3}\pi R^3\right)}{a^3}$$[span_26](start_span)[span_26](end_span)[span_27](start_span)[span_27](end_span)</td>
-                            <td>• $Z = 4$<br>• Relation : $a = \frac{4R}{\sqrt{2}} = 2\sqrt{2}R$<br>• $C = \frac{4 \cdot \frac{4}{3}\pi R^3}{(2\sqrt{2}R)^3} = \frac{\frac{16}{3}\pi R^3}{16\sqrt{2}R^3} = \frac{\pi}{3\sqrt{2}} \approx 0,74$[span_28](start_span)[span_28](end_span)</td>
+                            <td>$$C = \frac{V_{\text{atomes}}}{V_{\text{maille}}} = \frac{Z \cdot \left(\frac{4}{3}\pi R^3\right)}{a^3}$$</td>
+                            <td>• $Z = 4$<br>• Relation : $a = \frac{4R}{\sqrt{2}} = 2\sqrt{2}R$<br>• $C = \frac{4 \cdot \frac{4}{3}\pi R^3}{(2\sqrt{2}R)^3} = \frac{\frac{16}{3}\pi R^3}{16\sqrt{2}R^3} = \frac{\pi}{3\sqrt{2}} \approx 0,74$</td>
                             <td>• $Z = 2$<br>• Relation : $a = \frac{4R}{\sqrt{3}}$<br>• $C = \frac{2 \cdot \frac{4}{3}\pi R^3}{(\frac{4R}{\sqrt{3}})^3} = \frac{\frac{8}{3}\pi R^3}{\frac{64\sqrt{3}}{27}R^3} = \frac{\pi\sqrt{3}}{8} \approx 0,68$</td>
                         </tr>
                     </tbody>
@@ -582,11 +590,11 @@
         // Logique du Quiz Flash enrichie
         const quizData = [
             { q: "Quel est le nombre de nœuds (multiplicité) d'une maille à mode Primitif (P) ?", a: "1 nœud par maille (8 sommets × 1/8)." },
-            { q: "Pourquoi le mode de réseau 'C' (faces opposées centrées) n'existe-t-il pas dans le système cubique ?", a: "À cause de la symétrie ternaire du cube : si une face est centrée, la symétrie impose que toutes le soient (on obtient alors un réseau F)[span_12](start_span)[span_12](end_span)." },
-            { q: "Combien existe-t-il de réseaux de Bravais au total en combinant systèmes et modes ?", a: "Exactement 14 réseaux de Bravais[span_13](start_span)[span_13](end_span)." },
-            { q: "Quels sont les paramètres de maille (longueurs et angles) qui caractérisent le système Cristallin Cubique ?", a: "a = b = c et $\alpha = \beta = \gamma = 90^\circ$[span_14](start_span)[span_14](end_span)." },
-            { q: "Quel système cristallin possède la symétrie la plus faible (aucun angle à 90°, arêtes toutes différentes) ?", a: "Le système Triclinique ($a \neq b \neq c$ et $\alpha \neq \beta \neq \gamma \neq 90^\circ$)[span_15](start_span)[span_15](end_span)." },
-            { q: "Quelle est la coordinence (IC) d'une structure Cubique Faces Centrées (CFC) ?", a: "IC = 12 (structure compacte maximale)[span_16](start_span)[span_16](end_span)." }
+            { q: "Pourquoi le mode de réseau 'C' (faces opposées centrées) n'existe-t-il pas dans le système cubique ?", a: "À cause de la symétrie ternaire du cube : si une face est centrée, la symétrie impose que toutes le soient (on obtient alors un réseau F)." },
+            { q: "Combien existe-t-il de réseaux de Bravais au total en combinant systèmes et modes ?", a: "Exactement 14 réseaux de Bravais." },
+            { q: "Quels sont les paramètres de maille (longueurs et angles) qui caractérisent le système Cristallin Cubique ?", a: "a = b = c et $\alpha = \beta = \gamma = 90^\circ$." },
+            { q: "Quel système cristallin possède la symétrie la plus faible (aucun angle à 90°, arêtes toutes différentes) ?", a: "Le système Triclinique ($a \neq b \neq c$ et $\alpha \neq \beta \neq \gamma \neq 90^\circ$)." },
+            { q: "Quelle est la coordinence (IC) d'une structure Cubique Faces Centrées (CFC) ?", a: "IC = 12 (structure compacte maximale)." }
         ];
 
         let currentQuizIndex = -1;
