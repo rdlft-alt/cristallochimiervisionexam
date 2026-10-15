@@ -108,6 +108,16 @@
             border-color: var(--primary);
         }
 
+        .quick-nav a.sim-link {
+            background: #16a34a;
+            color: white;
+            border-color: #16a34a;
+        }
+
+        .quick-nav a.sim-link:hover {
+            background: #15803d;
+        }
+
         /* Barre de recherche */
         .search-container {
             margin-bottom: 35px;
@@ -242,6 +252,7 @@
             display: flex;
             gap: 10px;
             margin-bottom: 15px;
+            flex-wrap: wrap;
         }
 
         .tab-btn {
@@ -316,6 +327,146 @@
             display: none;
         }
 
+        /* STYLES DU SIMULATEUR D'EXAMEN CHRONOMÉTRÉ */
+        .sim-container {
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 10px 20px -5px rgb(0 0 0 / 0.08);
+        }
+
+        .sim-header-bar {
+            position: sticky;
+            top: 10px;
+            z-index: 50;
+            background: #0f172a;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .sim-timer {
+            font-size: 1.35rem;
+            font-weight: 800;
+            font-family: monospace;
+            padding: 4px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .sim-q-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 18px;
+            transition: border-color 0.2s;
+        }
+
+        .sim-q-card.correct {
+            border: 2px solid #22c55e;
+            background: #f0fdf4;
+        }
+
+        .sim-q-card.wrong {
+            border: 2px solid #ef4444;
+            background: #fef2f2;
+        }
+
+        .sim-q-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .sim-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+        }
+
+        .sim-opt-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            transition: all 0.15s;
+        }
+
+        .sim-opt-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .sim-opt-btn.selected {
+            border-color: var(--primary);
+            background: #dbeafe;
+            font-weight: 600;
+        }
+
+        .sim-opt-btn.opt-correct {
+            border-color: #16a34a !important;
+            background: #dcfce7 !important;
+            color: #14532d !important;
+            font-weight: 700;
+        }
+
+        .sim-opt-btn.opt-wrong {
+            border-color: #dc2626 !important;
+            background: #fee2e2 !important;
+            color: #7f1d1d !important;
+            text-decoration: line-through;
+        }
+
+        .sim-box-check {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #475569;
+            display: inline-block;
+            flex-shrink: 0;
+            border-radius: 3px;
+        }
+
+        .sim-opt-btn.selected .sim-box-check {
+            background: #0f172a;
+            border-color: #0f172a;
+        }
+
+        .sim-explanation {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: white;
+            border-left: 4px solid var(--primary);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            display: none;
+        }
+
+        .sim-score-banner {
+            text-align: center;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: none;
+        }
+
         footer {
             text-align: center;
             padding: 25px;
@@ -332,7 +483,7 @@
         <header>
             <h1>Cristallochimie - UE CHI101 / CHI102</h1>
             <p>Manuel de Survie Interactif : Cours Complet, Démonstrations, Astuces & Annales Corrigées</p>
-            <div class="exam-badge">Format Épreuve : 24 questions (1 pt/question, note sur 20) • 45 min • Sans calculatrice ni document[span_17](start_span)[span_17](end_span)[span_18](start_span)[span_18](end_span)</div>
+            <div class="exam-badge">Format Épreuve : 24 questions (1 pt/question, note sur 20) • 45 min • Sans calculatrice ni document[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span)</div>
         </header>
 
         <!-- Navigation Rapide -->
@@ -348,6 +499,7 @@
             <a href="#sec-sites">9. Sites & Alliages</a>
             <a href="#sec-annales">10. Annales 2024 & 2025</a>
             <a href="#sec-outils">11. Calculateur & Quiz</a>
+            <a href="#sec-simulateur" class="sim-link">⏱️ 12. Simulateur d'Examen (45 min)</a>
         </nav>
 
         <!-- Barre de recherche -->
@@ -361,7 +513,7 @@
             <div class="grid-cards">
                 <div class="card" data-keywords="cristal periodique motif espace">
                     <h3>Cristal Périodique</h3>
-                    <p>Solide présentant un ordre à grande distance. <strong>Phrase exacte du QCM :</strong> Les cristaux périodiques sont formés par la répétition triplement périodique dans l'espace <strong>d'un motif</strong> (et non pas d'un nœud ou d'une maille !)[span_19](start_span)[span_19](end_span).<br>
+                    <p>Solide présentant un ordre à grande distance. <strong>Phrase exacte du QCM :</strong> Les cristaux périodiques sont formés par la répétition triplement périodique dans l'espace <strong>d'un motif</strong> (et non pas d'un nœud ou d'une maille !)[span_16](start_span)[span_16](end_span).<br>
                     $$\text{Cristal} = \text{Réseau de nœuds} + \text{Motif}$$</p>
                 </div>
                 <div class="card" data-keywords="reseau noeuds translation vecteurs">
@@ -370,7 +522,7 @@
                 </div>
                 <div class="card" data-keywords="motif atome molecule ion groupement mg2s">
                     <h3>Motif</h3>
-                    <p>Entité chimique (atome, molécule, ou groupement d'ions comme $\text{Mg}_2\text{S}$) associée à chaque nœud du réseau[span_20](start_span)[span_20](end_span). Si une maille CFC (4 nœuds) a pour motif $\text{Mg}_2\text{S}$, elle contient $4 \times 2 = \mathbf{8}$ atomes de $\text{Mg}$[span_21](start_span)[span_21](end_span).</p>
+                    <p>Entité chimique (atome, molécule, ou groupement d'ions comme $\text{Mg}_2\text{S}$) associée à chaque nœud du réseau[span_17](start_span)[span_17](end_span). Si une maille CFC (4 nœuds) a pour motif $\text{Mg}_2\text{S}$, elle contient $4 \times 2 = \mathbf{8}$ atomes de $\text{Mg}$[span_18](start_span)[span_18](end_span).</p>
                 </div>
                 <div class="card" data-keywords="maille volume parallelepipede parametres">
                     <h3>Maille</h3>
@@ -379,16 +531,16 @@
                 <div class="card" data-keywords="coordinence ic voisins polyedre cube octaedre cubooctaedre">
                     <h3>Coordinence ($I_C$) & Polyèdres</h3>
                     <p>Nombre de plus proches voisins équidistants entourant un atome. À chaque coordinence correspond un <strong>polyèdre de coordination</strong> :<br>
-                    • <strong>$I_C = 4$ :</strong> Tétraèdre[span_22](start_span)[span_22](end_span)<br>
-                    • <strong>$I_C = 6$ :</strong> Octaèdre[span_23](start_span)[span_23](end_span)[span_24](start_span)[span_24](end_span)[span_25](start_span)[span_25](end_span)<br>
-                    • <strong>$I_C = 8$ :</strong> Cube (ou cubique, ex: centre d'un CC)[span_26](start_span)[span_26](end_span)[span_27](start_span)[span_27](end_span)[span_28](start_span)[span_28](end_span)<br>
-                    • <strong>$I_C = 12$ :</strong> Cuboctaèdre / Cubooctaèdre (ex: CFC)[span_29](start_span)[span_29](end_span)[span_30](start_span)[span_30](end_span)</p>
+                    • <strong>$I_C = 4$ :</strong> Tétraèdre[span_19](start_span)[span_19](end_span)<br>
+                    • <strong>$I_C = 6$ :</strong> Octaèdre[span_20](start_span)[span_20](end_span)[span_21](start_span)[span_21](end_span)[span_22](start_span)[span_22](end_span)<br>
+                    • <strong>$I_C = 8$ :</strong> Cube (ou cubique, ex: centre d'un CC)[span_23](start_span)[span_23](end_span)[span_24](start_span)[span_24](end_span)[span_25](start_span)[span_25](end_span)<br>
+                    • <strong>$I_C = 12$ :</strong> Cuboctaèdre / Cubooctaèdre (ex: CFC)[span_26](start_span)[span_26](end_span)[span_27](start_span)[span_27](end_span)</p>
                 </div>
                 <div class="card" data-keywords="compacite taux remplissage sans unite 0.74">
                     <h3>Compacité ($C$)</h3>
-                    <p>• <strong>Définition QCM :</strong> Correspond au <strong>taux de remplissage de la maille</strong> ($V_{\text{atomes}} / V_{\text{maille}}$)[span_31](start_span)[span_31](end_span).<br>
-                    • <strong>Unité :</strong> S'exprime <strong>sans unité</strong>[span_32](start_span)[span_32](end_span).<br>
-                    • <strong>Maximum :</strong> Pour un seul type d'atome, la compacité maximale est <strong>$0,74$</strong> ($74\%$, atteinte pour CFC et HC)[span_33](start_span)[span_33](end_span).</p>
+                    <p>• <strong>Définition QCM :</strong> Correspond au <strong>taux de remplissage de la maille</strong> ($V_{\text{atomes}} / V_{\text{maille}}$)[span_28](start_span)[span_28](end_span).<br>
+                    • <strong>Unité :</strong> S'exprime <strong>sans unité</strong>[span_29](start_span)[span_29](end_span).<br>
+                    • <strong>Maximum :</strong> Pour un seul type d'atome, la compacité maximale est <strong>$0,74$</strong> ($74\%$, atteinte pour CFC et HC)[span_30](start_span)[span_30](end_span).</p>
                 </div>
             </div>
         </section>
@@ -411,23 +563,23 @@
                         <tr>
                             <td><strong>P</strong></td>
                             <td>Primitif (Simple)</td>
-                            <td><strong>1 translation</strong>[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span)</td>
+                            <td><strong>1 translation</strong>[span_31](start_span)[span_31](end_span)[span_32](start_span)[span_32](end_span)</td>
                             <td>$(0;0;0)$</td>
-                            <td>Polonium ($\text{Po}$), alliages ordonnés ($\text{CsCl}$, $\text{AuCu}$, $\text{AgPt}$)[span_36](start_span)[span_36](end_span)[span_37](start_span)[span_37](end_span)[span_38](start_span)[span_38](end_span)</td>
+                            <td>Polonium ($\text{Po}$), alliages ordonnés ($\text{CsCl}$, $\text{AuCu}$, $\text{AgPt}$)[span_33](start_span)[span_33](end_span)[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span)</td>
                         </tr>
                         <tr>
                             <td><strong>I</strong></td>
                             <td>Centré</td>
-                            <td><strong>2 translations</strong>[span_39](start_span)[span_39](end_span)[span_40](start_span)[span_40](end_span)</td>
+                            <td><strong>2 translations</strong>[span_36](start_span)[span_36](end_span)[span_37](start_span)[span_37](end_span)</td>
                             <td>$(0;0;0)$ et $(1/2;1/2;1/2)$</td>
-                            <td>Chrome ($\text{Cr}$)[span_41](start_span)[span_41](end_span)[span_42](start_span)[span_42](end_span), Fer $\alpha$, Sodium ($\text{Na}$), Tungstène ($\text{W}$)</td>
+                            <td>Chrome ($\text{Cr}$)[span_38](start_span)[span_38](end_span)[span_39](start_span)[span_39](end_span), Fer $\alpha$, Sodium ($\text{Na}$), Tungstène ($\text{W}$)</td>
                         </tr>
                         <tr>
                             <td><strong>F</strong></td>
                             <td>Faces centrées</td>
-                            <td><strong>4 translations</strong>[span_43](start_span)[span_43](end_span)[span_44](start_span)[span_44](end_span)</td>
+                            <td><strong>4 translations</strong>[span_40](start_span)[span_40](end_span)[span_41](start_span)[span_41](end_span)</td>
                             <td>$(0;0;0)$, $(1/2;1/2;0)$, $(1/2;0;1/2)$ et $(0;1/2;1/2)$</td>
-                            <td>Cuivre ($\text{Cu}$)[span_45](start_span)[span_45](end_span), Or ($\text{Au}$), Argent ($\text{Ag}$), Rhodium ($\text{Rh}$), Diamant ($\text{C}$)[span_46](start_span)[span_46](end_span)</td>
+                            <td>Cuivre ($\text{Cu}$)[span_42](start_span)[span_42](end_span), Or ($\text{Au}$), Argent ($\text{Ag}$), Rhodium ($\text{Rh}$), Diamant ($\text{C}$)[span_43](start_span)[span_43](end_span)</td>
                         </tr>
                         <tr>
                             <td><strong>C</strong></td>
@@ -441,14 +593,14 @@
             </div>
 
             <div class="tip-box">
-                <strong>À retenir par cœur (Question récurrente 2024 & 2025) :</strong> Le nombre de translations de réseau dans les structures cubiques <strong>P, I et F</strong> sont respectivement <strong>1 ; 2 et 4</strong>[span_47](start_span)[span_47](end_span)[span_48](start_span)[span_48](end_span).
+                <strong>À retenir par cœur (Question récurrente 2024 & 2025) :</strong> Le nombre de translations de réseau dans les structures cubiques <strong>P, I et F</strong> sont respectivement <strong>1 ; 2 et 4</strong>[span_44](start_span)[span_44](end_span)[span_45](start_span)[span_45](end_span).
             </div>
 
             <div class="alert-box">
                 <strong>PIÈGE MORTEL AUX PARTIELS (Mode P vs Mode I ou F dans les alliages) :</strong><br>
                 Pour qu'une structure soit en mode <strong>I</strong> ou en mode <strong>F</strong>, il faut que toutes les positions générées par les translations de réseau soient occupées par <strong>la même espèce chimique</strong> !<br>
-                • <em>Cas 1 (Partiel 2024 Q16) :</em> Alliage binaire $\text{AB}$ avec $\text{A}$ en $(0;0;0)$ et $\text{B}$ en $(1/2;1/2;1/2)$[span_49](start_span)[span_49](end_span). Comme $\text{A} \neq \text{B}$, le centre n'est pas équivalent au sommet : le mode de réseau est <strong>Mode P</strong> (et surtout pas I !)[span_50](start_span)[span_50](end_span).<br>
-                • <em>Cas 2 (Partiel 2024 Q5 & 2025 Q10) :</em> Composé $\text{AuCu}$ ou $\text{AgPt}$ avec $\text{Au/Ag}$ en $(0;0;0)$ et $(1/2;1/2;0)$, et $\text{Cu/Pt}$ en $(1/2;0;1/2)$ et $(0;1/2;1/2)$[span_51](start_span)[span_51](end_span)[span_52](start_span)[span_52](end_span). Les faces n'étant pas toutes occupées par le même atome, le mode de réseau est <strong>P</strong> (et surtout pas F ou CFC !)[span_53](start_span)[span_53](end_span)[span_54](start_span)[span_54](end_span).
+                • <em>Cas 1 (Partiel 2024 Q16) :</em> Alliage binaire $\text{AB}$ avec $\text{A}$ en $(0;0;0)$ et $\text{B}$ en $(1/2;1/2;1/2)$[span_46](start_span)[span_46](end_span). Comme $\text{A} \neq \text{B}$, le centre n'est pas équivalent au sommet : le mode de réseau est <strong>Mode P</strong> (et surtout pas I !)[span_47](start_span)[span_47](end_span).<br>
+                • <em>Cas 2 (Partiel 2024 Q5 & 2025 Q10) :</em> Composé $\text{AuCu}$ ou $\text{AgPt}$ avec $\text{Au/Ag}$ en $(0;0;0)$ et $(1/2;1/2;0)$, et $\text{Cu/Pt}$ en $(1/2;0;1/2)$ et $(0;1/2;1/2)$[span_48](start_span)[span_48](end_span)[span_49](start_span)[span_49](end_span). Les faces n'étant pas toutes occupées par le même atome, le mode de réseau est <strong>P</strong> (et surtout pas F ou CFC !)[span_50](start_span)[span_50](end_span)[span_51](start_span)[span_51](end_span).
             </div>
         </section>
 
@@ -520,7 +672,7 @@
             <div class="grid-cards">
                 <div class="card" data-keywords="decompte position atomes sommet arete face interieur">
                     <h3>Règle du Décompte des Atomes ($Z$)</h3>
-                    <p><strong>Question QCM 2025 :</strong> Le décompte des atomes contenus dans la maille dépend uniquement <strong>de la position des atomes</strong> (ni de leur rayon, ni du volume de la maille)[span_55](start_span)[span_55](end_span) :<br>
+                    <p><strong>Question QCM 2025 :</strong> Le décompte des atomes contenus dans la maille dépend uniquement <strong>de la position des atomes</strong> (ni de leur rayon, ni du volume de la maille)[span_52](start_span)[span_52](end_span) :<br>
                     • <strong>Sommet</strong> (ex: $(0;0;0)$) : partagé par 8 mailles $\rightarrow \mathbf{1/8}$<br>
                     • <strong>Arête</strong> (ex: $(1/2;0;0)$) : partagée par 4 mailles $\rightarrow \mathbf{1/4}$<br>
                     • <strong>Face</strong> (ex: $(1/2;1/2;0)$) : partagée par 2 mailles $\rightarrow \mathbf{1/2}$<br>
@@ -530,24 +682,24 @@
                 <div class="card" data-keywords="modulo 1 translation mode I 1/4 1/2 3/4">
                     <h3>Méthode du Modulo 1 (Translations Mode I)</h3>
                     <p>Pour trouver l'autre position générée par un <strong>mode I</strong> à partir de $(x;y;z)$, ajoute $(+1/2 ; +1/2 ; +1/2)$. <strong>Si une coordonnée atteint ou dépasse $1$, soustrais $1$</strong> (car on reste dans $[0;1[$) :<br>
-                    • <em>Partiel 2025 Q15 :</em> Atome en $(1/4; 1/2; 1/4)$[span_56](start_span)[span_56](end_span)<br>
-                    $\rightarrow (1/4+1/2 \text{ ; } 1/2+1/2 \text{ ; } 1/4+1/2) = (3/4; 1; 3/4) \equiv \mathbf{(3/4; 0; 3/4)}$[span_57](start_span)[span_57](end_span).<br>
-                    • <em>Partiel 2024 Q1 :</em> Atome en $(1/4; 1/2; 3/4)$[span_58](start_span)[span_58](end_span)<br>
-                    $\rightarrow (3/4; 1; 5/4) \equiv \mathbf{(3/4; 0; 1/4)}$[span_59](start_span)[span_59](end_span).</p>
+                    • <em>Partiel 2025 Q15 :</em> Atome en $(1/4; 1/2; 1/4)$[span_53](start_span)[span_53](end_span)<br>
+                    $\rightarrow (1/4+1/2 \text{ ; } 1/2+1/2 \text{ ; } 1/4+1/2) = (3/4; 1; 3/4) \equiv \mathbf{(3/4; 0; 3/4)}$[span_54](start_span)[span_54](end_span).<br>
+                    • <em>Partiel 2024 Q1 :</em> Atome en $(1/4; 1/2; 3/4)$[span_55](start_span)[span_55](end_span)<br>
+                    $\rightarrow (3/4; 1; 5/4) \equiv \mathbf{(3/4; 0; 1/4)}$[span_56](start_span)[span_56](end_span).</p>
                 </div>
 
                 <div class="card" data-keywords="positions justes necessaires mode F stoechiometrie formule chimique">
                     <h3>Astuce des Positions Justes Nécessaires</h3>
                     <p>$$\text{Nb d'atomes} = (\text{Nb positions justes nécessaires}) \times (\text{Translations du mode})$$
-                    • <strong>En mode F ($\times 4$) :</strong> 2 positions comme $(0;0;0)$ et $(1/4;1/4;1/4)$[span_60](start_span)[span_60](end_span) (ou $(0;0;0)$ et $(1/2;0;0)$[span_61](start_span)[span_61](end_span)) donnent directement $2 \times 4 = \mathbf{8\text{ atomes/maille}}$[span_62](start_span)[span_62](end_span)[span_63](start_span)[span_63](end_span).<br>
-                    • Réciproquement, une structure ayant des atomes aux sommets + faces ($= 4$ atomes du mode F) + moitié des sites $T_d$ ($= 4$ atomes) nécessite <strong>2 positions justes nécessaires</strong>[span_64](start_span)[span_64](end_span).</p>
+                    • <strong>En mode F ($\times 4$) :</strong> 2 positions comme $(0;0;0)$ et $(1/4;1/4;1/4)$[span_57](start_span)[span_57](end_span) (ou $(0;0;0)$ et $(1/2;0;0)$[span_58](start_span)[span_58](end_span)) donnent directement $2 \times 4 = \mathbf{8\text{ atomes/maille}}$[span_59](start_span)[span_59](end_span)[span_60](start_span)[span_60](end_span).<br>
+                    • Réciproquement, une structure ayant des atomes aux sommets + faces ($= 4$ atomes du mode F) + moitié des sites $T_d$ ($= 4$ atomes) nécessite <strong>2 positions justes nécessaires</strong>[span_61](start_span)[span_61](end_span).</p>
                 </div>
             </div>
 
             <div class="tip-box">
                 <strong>Application directe pour trouver une formule chimique en 10 secondes :</strong><br>
-                • <em>Partiel 2025 Q3 (Mode CFC / F) :</em> $\text{A}$ en $(0;0;0)$ [1 position $\times 4 = 4\text{ A}$] et $\text{B}$ en $(1/4;1/4;1/4)$ et $(1/4;3/4;1/4)$ [2 positions $\times 4 = 8\text{ B}$][span_65](start_span)[span_65](end_span). Contenu de la maille $= \text{A}_4\text{B}_8$, soit la formule chimique <strong>$\text{AB}_2$</strong>[span_66](start_span)[span_66](end_span).<br>
-                • <em>Partiel 2024 Q4 (Mode Primitif P) :</em> En mode P (1 translation), chaque triplet dans $[0;1[$ vaut exactement $1$ atome ! $\text{A}$ en $(0;0;0)$ [1 triplet $\rightarrow 1\text{ A}$], $\text{B}$ en $(1/2;0;0)$ et $(0;1/2;0)$ [2 triplets $\rightarrow 2\text{ B}$], $\text{C}$ en $(1/2;1/2;0)$, $(1/2;0;1/2)$ et $(0;1/2;1/2)$ [3 triplets $\rightarrow 3\text{ C}$] $\rightarrow$ Formule <strong>$\text{AB}_2\text{C}_3$</strong>[span_67](start_span)[span_67](end_span).
+                • <em>Partiel 2025 Q3 (Mode CFC / F) :</em> $\text{A}$ en $(0;0;0)$ [1 position $\times 4 = 4\text{ A}$] et $\text{B}$ en $(1/4;1/4;1/4)$ et $(1/4;3/4;1/4)$ [2 positions $\times 4 = 8\text{ B}$][span_62](start_span)[span_62](end_span). Contenu de la maille $= \text{A}_4\text{B}_8$, soit la formule chimique <strong>$\text{AB}_2$</strong>[span_63](start_span)[span_63](end_span).<br>
+                • <em>Partiel 2024 Q4 (Mode Primitif P) :</em> En mode P (1 translation), chaque triplet dans $[0;1[$ vaut exactement $1$ atome ! $\text{A}$ en $(0;0;0)$ [1 triplet $\rightarrow 1\text{ A}$], $\text{B}$ en $(1/2;0;0)$ et $(0;1/2;0)$ [2 triplets $\rightarrow 2\text{ B}$], $\text{C}$ en $(1/2;1/2;0)$, $(1/2;0;1/2)$ et $(0;1/2;1/2)$ [3 triplets $\rightarrow 3\text{ C}$] $\rightarrow$ Formule <strong>$\text{AB}_2\text{C}_3$</strong>[span_64](start_span)[span_64](end_span).
             </div>
         </section>
 
@@ -571,38 +723,38 @@
                         <tr>
                             <td><strong>Cubique Simple (CS)</strong></td>
                             <td>Mode P<br>$Z = 1$</td>
-                            <td><strong>6</strong>[span_68](start_span)[span_68](end_span)<br>(Octaèdre)</td>
+                            <td><strong>6</strong>[span_65](start_span)[span_65](end_span)<br>(Octaèdre)</td>
                             <td><strong>L'arête du cube</strong></td>
                             <td>$$2R = a$$</td>
-                            <td>$$\frac{\pi}{6} \approx \mathbf{0,52}$$</td>
+                            <td>$$\frac{\pi}{6} \approx \mathbf{0,52}$$[span_66](start_span)[span_66](end_span)</td>
                             <td>AAA... (Non compact)</td>
                         </tr>
                         <tr>
                             <td><strong>Cubique Centré (CC)</strong></td>
                             <td>Mode I<br>$Z = 2$</td>
-                            <td><strong>8</strong>[span_69](start_span)[span_69](end_span)<br>(<strong>Cube / Cubique</strong>)[span_70](start_span)[span_70](end_span)[span_71](start_span)[span_71](end_span)[span_72](start_span)[span_72](end_span)</td>
-                            <td><strong>La diagonale du cube</strong>[span_73](start_span)[span_73](end_span)</td>
-                            <td>$$\mathbf{4R = a\sqrt{3}}$$[span_74](start_span)[span_74](end_span)</td>
-                            <td>$$\mathbf{\frac{\pi\sqrt{3}}{8}} \approx \mathbf{0,68}$$[span_75](start_span)[span_75](end_span)[span_76](start_span)[span_76](end_span)</td>
+                            <td><strong>8</strong>[span_67](start_span)[span_67](end_span)<br>(<strong>Cube / Cubique</strong>)[span_68](start_span)[span_68](end_span)[span_69](start_span)[span_69](end_span)[span_70](start_span)[span_70](end_span)</td>
+                            <td><strong>La diagonale du cube</strong>[span_71](start_span)[span_71](end_span)</td>
+                            <td>$$\mathbf{4R = a\sqrt{3}}$$[span_72](start_span)[span_72](end_span)</td>
+                            <td>$$\mathbf{\frac{\pi\sqrt{3}}{8}} \approx \mathbf{0,68}$$[span_73](start_span)[span_73](end_span)[span_74](start_span)[span_74](end_span)</td>
                             <td>Non compact</td>
                         </tr>
                         <tr>
                             <td><strong>Cubique Faces Centrées (CFC)</strong></td>
                             <td>Mode F<br>$Z = 4$</td>
-                            <td><strong>12</strong>[span_77](start_span)[span_77](end_span)<br>(<strong>Cuboctaèdre</strong>)[span_78](start_span)[span_78](end_span)</td>
-                            <td><strong>La diagonale d'une face du cube</strong>[span_79](start_span)[span_79](end_span)</td>
-                            <td>$$\mathbf{4R = a\sqrt{2}}$$[span_80](start_span)[span_80](end_span)</td>
-                            <td>$$\mathbf{\frac{\pi}{3\sqrt{2}}} \approx \mathbf{0,74}$$[span_81](start_span)[span_81](end_span)[span_82](start_span)[span_82](end_span)</td>
+                            <td><strong>12</strong>[span_75](start_span)[span_75](end_span)<br>(<strong>Cuboctaèdre</strong>)[span_76](start_span)[span_76](end_span)</td>
+                            <td><strong>La diagonale d'une face du cube</strong>[span_77](start_span)[span_77](end_span)</td>
+                            <td>$$\mathbf{4R = a\sqrt{2}}$$[span_78](start_span)[span_78](end_span)</td>
+                            <td>$$\mathbf{\frac{\pi}{3\sqrt{2}}} \approx \mathbf{0,74}$$[span_79](start_span)[span_79](end_span)[span_80](start_span)[span_80](end_span)</td>
                             <td><strong>ABCABC</strong> (ou ABCA)</td>
                         </tr>
                         <tr>
                             <td><strong>Hexagonale Compacte (HC)</strong></td>
                             <td>Mode P<br>$Z = 2$</td>
-                            <td><strong>12</strong>[span_83](start_span)[span_83](end_span)<br>(Anticuboctaèdre)</td>
+                            <td><strong>12</strong>[span_81](start_span)[span_81](end_span)<br>(Anticuboctaèdre)</td>
                             <td>Dans le plan de base ($2R=a$)</td>
                             <td>$$2R = a$$</td>
-                            <td>$$\frac{\pi}{3\sqrt{2}} \approx \mathbf{0,74}$$[span_84](start_span)[span_84](end_span)</td>
-                            <td><strong>ABAB</strong>[span_85](start_span)[span_85](end_span)</td>
+                            <td>$$\frac{\pi}{3\sqrt{2}} \approx \mathbf{0,74}$$[span_82](start_span)[span_82](end_span)</td>
+                            <td><strong>ABAB</strong>[span_83](start_span)[span_83](end_span)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -621,15 +773,15 @@
                 </div>
                 <div class="card" data-keywords="tangence cubique centre diagonale cube 4R=a sqrt(3)">
                     <h3>2. Cubique Centré (CC)</h3>
-                    <p>• <strong>Axe de contact :</strong> Le long de <strong>la grande diagonale du cube</strong>[span_86](start_span)[span_86](end_span).<br>
+                    <p>• <strong>Axe de contact :</strong> Le long de <strong>la grande diagonale du cube</strong>[span_84](start_span)[span_84](end_span).<br>
                     • <strong>Démonstration par Pythagore :</strong> La diagonale d'une face vaut $\sqrt{a^2+a^2} = a\sqrt{2}$. La grande diagonale du cube vaut $\sqrt{a^2 + (a\sqrt{2})^2} = a\sqrt{3}$. Sur cet axe, on aligne $R$ (sommet) $+ 2R$ (atome central) $+ R$ (sommet opposé) $= 4R$.<br>
-                    • <strong>Formule :</strong> $$\mathbf{4R = a\sqrt{3}}$$[span_87](start_span)[span_87](end_span)</p>
+                    • <strong>Formule :</strong> $$\mathbf{4R = a\sqrt{3}}$$[span_85](start_span)[span_85](end_span)</p>
                 </div>
                 <div class="card" data-keywords="tangence cfc diagonale face cube 4R=a sqrt(2)">
                     <h3>3. Cubique Faces Centrées (CFC)</h3>
-                    <p>• <strong>Axe de contact :</strong> Le long de <strong>la diagonale d'une face du cube</strong>[span_88](start_span)[span_88](end_span).<br>
+                    <p>• <strong>Axe de contact :</strong> Le long de <strong>la diagonale d'une face du cube</strong>[span_86](start_span)[span_86](end_span).<br>
                     • <strong>Démonstration par Pythagore :</strong> La diagonale d'une face carrée de côté $a$ mesure $\sqrt{a^2+a^2} = a\sqrt{2}$. Sur cette diagonale se touchent $R$ (sommet) $+ 2R$ (centre de face) $+ R$ (sommet opposé) $= 4R$.<br>
-                    • <strong>Formule :</strong> $$\mathbf{4R = a\sqrt{2}}$$[span_89](start_span)[span_89](end_span)</p>
+                    • <strong>Formule :</strong> $$\mathbf{4R = a\sqrt{2}}$$[span_87](start_span)[span_87](end_span)</p>
                 </div>
             </div>
         </section>
@@ -642,15 +794,15 @@
                     <thead>
                         <tr>
                             <th>Formule Générale</th>
-                            <th>Démonstration CFC ($0,74$)[span_90](start_span)[span_90](end_span)[span_91](start_span)[span_91](end_span)</th>
-                            <th>Démonstration CC ($0,68$)[span_92](start_span)[span_92](end_span)[span_93](start_span)[span_93](end_span)</th>
+                            <th>Démonstration CFC ($0,74$)[span_88](start_span)[span_88](end_span)[span_89](start_span)[span_89](end_span)</th>
+                            <th>Démonstration CC ($0,68$)[span_90](start_span)[span_90](end_span)[span_91](start_span)[span_91](end_span)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>$$C = \frac{V_{\text{atomes}}}{V_{\text{maille}}} = \frac{Z \times \frac{4}{3}\pi R^3}{a^3}$$<br><em>(Taux de remplissage de la maille, sans unité)</em>[span_94](start_span)[span_94](end_span)[span_95](start_span)[span_95](end_span)</td>
-                            <td>• $Z = 4$ atomes/maille<br>• Tangence : $4R = a\sqrt{2} \implies a = \frac{4R}{\sqrt{2}} = 2\sqrt{2}R$[span_96](start_span)[span_96](end_span)<br>• $a^3 = (2\sqrt{2}R)^3 = 16\sqrt{2}R^3$<br>• $$C = \frac{4 \times \frac{4}{3}\pi R^3}{16\sqrt{2}R^3} = \mathbf{\frac{\pi}{3\sqrt{2}}} \approx 0,74$$[span_97](start_span)[span_97](end_span)[span_98](start_span)[span_98](end_span)</td>
-                            <td>• $Z = 2$ atomes/maille<br>• Tangence : $4R = a\sqrt{3} \implies R = \frac{a\sqrt{3}}{4}$[span_99](start_span)[span_99](end_span)<br>• $R^3 = \frac{3\sqrt{3}}{64}a^3$<br>• $$C = \frac{2 \times \frac{4}{3}\pi \left(\frac{3\sqrt{3}}{64}a^3\right)}{a^3} = \mathbf{\frac{\pi\sqrt{3}}{8}} \approx 0,68$$[span_100](start_span)[span_100](end_span)</td>
+                            <td>$$C = \frac{V_{\text{atomes}}}{V_{\text{maille}}} = \frac{Z \times \frac{4}{3}\pi R^3}{a^3}$$<br><em>(Taux de remplissage de la maille, sans unité)</em>[span_92](start_span)[span_92](end_span)[span_93](start_span)[span_93](end_span)</td>
+                            <td>• $Z = 4$ atomes/maille<br>• Tangence : $4R = a\sqrt{2} \implies a = \frac{4R}{\sqrt{2}} = 2\sqrt{2}R$[span_94](start_span)[span_94](end_span)<br>• $a^3 = (2\sqrt{2}R)^3 = 16\sqrt{2}R^3$<br>• $$C = \frac{4 \times \frac{4}{3}\pi R^3}{16\sqrt{2}R^3} = \mathbf{\frac{\pi}{3\sqrt{2}}} \approx 0,74$$[span_95](start_span)[span_95](end_span)[span_96](start_span)[span_96](end_span)</td>
+                            <td>• $Z = 2$ atomes/maille<br>• Tangence : $4R = a\sqrt{3} \implies R = \frac{a\sqrt{3}}{4}$[span_97](start_span)[span_97](end_span)<br>• $R^3 = \frac{3\sqrt{3}}{64}a^3$<br>• $$C = \frac{2 \times \frac{4}{3}\pi \left(\frac{3\sqrt{3}}{64}a^3\right)}{a^3} = \mathbf{\frac{\pi\sqrt{3}}{8}} \approx 0,68$$[span_98](start_span)[span_98](end_span)[span_99](start_span)[span_99](end_span)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -658,8 +810,8 @@
 
             <div class="tip-box">
                 <strong>Questions types de comparaison de compacité aux partiels :</strong><br>
-                • <em>Partiel 2024 Q24 (Rhodium vs Germanium) :</em> Le Rhodium ($4\text{ at/maille}$, $V_{\text{maille}} = 60\text{ \AA}^3$) et le Germanium ($8\text{ at/maille}$, $V_{\text{maille}} = 180\text{ \AA}^3$) ont un volume atomique $V_{\text{at}}$ similaire[span_101](start_span)[span_101](end_span). On compare les rapports : $C_{\text{Rh}} = \frac{4 \cdot V_{\text{at}}}{60} = \frac{1}{15}V_{\text{at}}$ et $C_{\text{Ge}} = \frac{8 \cdot V_{\text{at}}}{180} = \frac{1}{22,5}V_{\text{at}}$. Comme $\frac{1}{15} > \frac{1}{22,5}$, le plus compact est <strong>le Rhodium</strong>[span_102](start_span)[span_102](end_span).<br>
-                • <em>Partiel 2025 Q9 (Cuivre vs Carbone) :</em> On donne le Cuivre ($4\text{ Cu/maille}$ ; $V_{\text{atome}} = 7\text{ \AA}^3$) et le Carbone ($8\text{ C/maille}$ ; $V_{\text{atome}} = 2\text{ \AA}^3$)[span_103](start_span)[span_103](end_span). Attention : le volume de la maille $V_{\text{maille}}$ n'est pas donné dans l'énoncé ! Numériquement, sans $V_{\text{maille}}$, <strong>il manque des éléments pour répondre</strong>[span_104](start_span)[span_104](end_span) (et par connaissance du cours, le Cuivre métallique CFC est à $0,74$ contre $0,34$ pour le Carbone diamant)[span_105](start_span)[span_105](end_span).
+                • <em>Partiel 2024 Q24 (Rhodium vs Germanium) :</em> Le Rhodium ($4\text{ at/maille}$, $V_{\text{maille}} = 60\text{ \AA}^3$) et le Germanium ($8\text{ at/maille}$, $V_{\text{maille}} = 180\text{ \AA}^3$) ont un volume atomique $V_{\text{at}}$ similaire[span_100](start_span)[span_100](end_span). On compare les rapports : $C_{\text{Rh}} = \frac{4 \cdot V_{\text{at}}}{60} = \frac{1}{15}V_{\text{at}}$ et $C_{\text{Ge}} = \frac{8 \cdot V_{\text{at}}}{180} = \frac{1}{22,5}V_{\text{at}}$. Comme $\frac{1}{15} > \frac{1}{22,5}$, le plus compact est <strong>le Rhodium</strong>[span_101](start_span)[span_101](end_span).<br>
+                • <em>Partiel 2025 Q9 (Cuivre vs Carbone) :</em> On donne le Cuivre ($4\text{ Cu/maille}$ ; $V_{\text{atome}} = 7\text{ \AA}^3$) et le Carbone ($8\text{ C/maille}$ ; $V_{\text{atome}} = 2\text{ \AA}^3$)[span_102](start_span)[span_102](end_span). Attention : le volume de la maille $V_{\text{maille}}$ n'est pas donné dans l'énoncé ! Numériquement, sans $V_{\text{maille}}$, <strong>il manque des éléments pour répondre</strong>[span_103](start_span)[span_103](end_span) (et par connaissance du cours, le Cuivre métallique CFC est à $0,74$ contre $0,34$ pour le Carbone diamant)[span_104](start_span)[span_104](end_span).
             </div>
         </section>
 
@@ -679,8 +831,8 @@
                     <tbody>
                         <tr>
                             <td>$$\rho = \frac{Z \times M}{N \times a^3}$$</td>
-                            <td>Le chrome cristallise en structure <strong>cubique centrée (CC)</strong>, donc $\mathbf{Z = 2}$[span_106](start_span)[span_106](end_span)[span_107](start_span)[span_107](end_span) :<br>$$\mathbf{\rho = \frac{2 \times M}{N \times a^3}}$$<br><em>(Écrit $2*M/(N*a^3)$ dans les QCM 2024 Q9 et 2025 Q4)</em>[span_108](start_span)[span_108](end_span)[span_109](start_span)[span_109](end_span).</td>
-                            <td>Pour un métal CFC ($\text{Cu}, \text{Al}, \text{Au}$), on a $\mathbf{Z = 4}$ :<br>$$\rho = \frac{4 \times M}{N \times a^3}$$</td>
+                            <td>Le chrome cristallise en structure <strong>cubique centrée (CC)</strong>, donc $\mathbf{Z = 2}$[span_105](start_span)[span_105](end_span)[span_106](start_span)[span_106](end_span) :<br>$$\mathbf{\rho = \frac{2 \times M}{N \times a^3}}$$<br><em>(Écrit $2*M/(N*a^3)$ dans les QCM 2024 Q9 et 2025 Q4)</em>[span_107](start_span)[span_107](end_span)[span_108](start_span)[span_108](end_span).</td>
+                            <td>Pour un métal CFC ($\text{Cu}, \text{Al}, \text{Au}$), on a $\mathbf{Z = 4}$ :<br>$$\rho = \frac{4 \times M}{N \times a^3}$$[span_109](start_span)[span_109](end_span)[span_110](start_span)[span_110](end_span)</td>
                             <td>• $Z$ : nombre de motifs par maille<br>• $M$ : masse molaire ($\text{g}\cdot\text{mol}^{-1}$)<br>• $N$ : nombre d'Avogadro ($\text{mol}^{-1}$)<br>• $1\text{ \AA} = 10^{-8}\text{ cm} = 10^{-10}\text{ m}$</td>
                         </tr>
                     </tbody>
@@ -695,15 +847,15 @@
             <div class="grid-cards">
                 <div class="card" data-keywords="sites octaedriques oh cfc 4 centre aretes coordinence 6">
                     <h3>Sites Octaédriques ($O_h$) en CFC</h3>
-                    <p>• <strong>Nombre par maille :</strong> <strong>4 sites $O_h$</strong> au total ($1$ au centre $+ 12 \text{ arêtes} \times 1/4 = 4$)[span_110](start_span)[span_110](end_span)[span_111](start_span)[span_111](end_span).<br>
-                    • <strong>Positions exactes :</strong> Au centre de la maille $(1/2;1/2;1/2)$[span_112](start_span)[span_112](end_span) et aux milieux des 12 arêtes comme $(1/2;0;0)$[span_113](start_span)[span_113](end_span).<br>
-                    • <strong>Coordinence d'un atome B placé dans ces positions :</strong> Toujours égale à <strong>6</strong> (Q2 2025 & Q23 2024)[span_114](start_span)[span_114](end_span)[span_115](start_span)[span_115](end_span).</p>
+                    <p>• <strong>Nombre par maille :</strong> <strong>4 sites $O_h$</strong> au total ($1$ au centre $+ 12 \text{ arêtes} \times 1/4 = 4$)[span_111](start_span)[span_111](end_span)[span_112](start_span)[span_112](end_span).<br>
+                    • <strong>Positions exactes :</strong> Au centre de la maille $(1/2;1/2;1/2)$[span_113](start_span)[span_113](end_span) et aux milieux des 12 arêtes comme $(1/2;0;0)$[span_114](start_span)[span_114](end_span).<br>
+                    • <strong>Coordinence d'un atome B placé dans ces positions :</strong> Toujours égale à <strong>6</strong> (Q2 2025 & Q23 2024)[span_115](start_span)[span_115](end_span)[span_116](start_span)[span_116](end_span).</p>
                 </div>
 
                 <div class="card" data-keywords="sites tetraedriques td cfc 8 petits cubes coordinence 4">
                     <h3>Sites Tétraédriques ($T_d$) en CFC</h3>
                     <p>• <strong>Nombre par maille :</strong> <strong>8 sites $T_d$</strong> au total (1 au centre de chacun des 8 petits cubes d'arête $a/2$).<br>
-                    • <strong>Positions exactes :</strong> Coordonnées en $(1/4;1/4;1/4)$, $(1/4;3/4;1/4)$, etc.[span_116](start_span)[span_116](end_span)<br>
+                    • <strong>Positions exactes :</strong> Coordonnées en $(1/4;1/4;1/4)$, $(1/4;3/4;1/4)$, etc.[span_117](start_span)[span_117](end_span)<br>
                     • <strong>Coordinence :</strong> Toujours égale à <strong>4</strong>.</p>
                 </div>
 
@@ -712,26 +864,26 @@
                     <p>• <strong>Site Cubique (en CS) :</strong> $R_s = (\sqrt{3}-1)R \approx \mathbf{0,732 R}$<br>
                     • <strong>Site Octaédrique ($O_h$ en CFC) :</strong><br>
                     Sur l'arête $a$, $2R + 2R_s = a = \sqrt{2}(2R)$, d'où :<br>
-                    $$\mathbf{R_s = (\sqrt{2}-1)R \approx 0,414 R}$$[span_117](start_span)[span_117](end_span)[span_118](start_span)[span_118](end_span)
+                    $$\mathbf{R_s = (\sqrt{2}-1)R \approx 0,414 R}$$[span_118](start_span)[span_118](end_span)[span_119](start_span)[span_119](end_span)
                     • <strong>Site Tétraédrique ($T_d$ en CFC) :</strong><br>
-                    $$\mathbf{R_s = (\sqrt{3/2}-1)R \approx 0,225 R}$$[span_119](start_span)[span_119](end_span)[span_120](start_span)[span_120](end_span)
+                    $$\mathbf{R_s = (\sqrt{3/2}-1)R \approx 0,225 R}$$[span_120](start_span)[span_120](end_span)[span_121](start_span)[span_121](end_span)
                     • <strong>Ordre de taille (QCM 2024 & 2025) :</strong><br>
-                    $$\mathbf{\text{site cubique} > \text{site } O_h > \text{site } T_d}$$[span_121](start_span)[span_121](end_span)[span_122](start_span)[span_122](end_span)</p>
+                    $$\mathbf{\text{site cubique} > \text{site } O_h > \text{site } T_d}$$[span_122](start_span)[span_122](end_span)[span_123](start_span)[span_123](end_span)</p>
                 </div>
             </div>
 
             <div class="tip-box">
                 <strong>MÉTHODE INFAILLIBLE POUR LES QUESTIONS D'ALLIAGES ($\text{AB}$ avec $R_A = 2\text{ \AA}$) :</strong><br>
-                Dans tous les sujets, l'atome hôte $\text{A}$ (CFC, donc $4\text{ A/maille}$) a un rayon <strong>$R_A = 2\text{ \AA}$</strong>[span_123](start_span)[span_123](end_span)[span_124](start_span)[span_124](end_span)[span_125](start_span)[span_125](end_span). Retiens ces deux valeurs :
+                Dans tous les sujets, l'atome hôte $\text{A}$ (CFC, donc $4\text{ A/maille}$) a un rayon <strong>$R_A = 2\text{ \AA}$</strong>[span_124](start_span)[span_124](end_span)[span_125](start_span)[span_125](end_span)[span_126](start_span)[span_126](end_span). Retiens ces deux valeurs :
                 <ul style="margin-top: 8px; padding-left: 20px;">
                     <li>Taille maximale d'un <strong>site $T_d$</strong> : $R_{Td} = 0,225 \times 2 = \mathbf{0,45\text{ \AA}}$.</li>
                     <li>Taille maximale d'un <strong>site $O_h$</strong> : $R_{Oh} = 0,414 \times 2 = \mathbf{0,828\text{ \AA}}$.</li>
                 </ul>
                 <p style="margin-top: 8px;">
-                1. <strong>Partiel 2024 Q6 ($R_A = 2\text{ \AA}$ et $R_B = 0,44\text{ \AA}$) :</strong> Comme $R_B \ll R_A$, c'est un <strong>Alliage d'insertion</strong>[span_126](start_span)[span_126](end_span).<br>
-                2. <strong>Partiel 2024 Q18 ($R_A = 2\text{ \AA}$ et $R_B = 0,8\text{ \AA}$) :</strong> $0,8\text{ \AA}$ est trop gros pour un site $T_d$ ($0,45\text{ \AA}$) mais rentre parfaitement dans un site $O_h$ ($0,828\text{ \AA}$) $\rightarrow$ $\text{B}$ occupe <strong>Le site octaédrique</strong>[span_127](start_span)[span_127](end_span).<br>
-                3. <strong>Partiel 2025 Q22 (Alliage $\text{AB}$ en CFC avec $R_A = 2\text{ \AA}$ et $R_B = 0,44\text{ \AA}$) :</strong> Comme $R_B = 0,44\text{ \AA} \approx 0,45\text{ \AA}$, $\text{B}$ s'insère dans les sites tétraédriques. Mais la formule est $\text{AB}$ : comme il y a $4$ atomes $\text{A}$ par maille CFC, il faut $4$ atomes $\text{B}$. Or il y a $8$ sites $T_d$ par maille ! $\text{B}$ occupe donc <strong>La moitié des sites tétraédriques</strong> ($8/2 = 4$)[span_128](start_span)[span_128](end_span).<br>
-                4. <strong>Partiel 2024 Q14 (Alliage d'insertion $\text{AB}$ en CFC parmi « Tous les sites... ») :</strong> Pour avoir $4$ atomes $\text{B}$ correspondant aux $4$ atomes $\text{A}$ en occupant <em>tous</em> les sites d'une famille, $\text{B}$ doit occuper <strong>Tous les sites octaédriques</strong> (car il y a $4$ sites $O_h$ par maille CFC)[span_129](start_span)[span_129](end_span).
+                1. <strong>Partiel 2024 Q6 ($R_A = 2\text{ \AA}$ et $R_B = 0,44\text{ \AA}$) :</strong> Comme $R_B \ll R_A$, c'est un <strong>Alliage d'insertion</strong>[span_127](start_span)[span_127](end_span).<br>
+                2. <strong>Partiel 2024 Q18 ($R_A = 2\text{ \AA}$ et $R_B = 0,8\text{ \AA}$) :</strong> $0,8\text{ \AA}$ est trop gros pour un site $T_d$ ($0,45\text{ \AA}$) mais rentre parfaitement dans un site $O_h$ ($0,828\text{ \AA}$) $\rightarrow$ $\text{B}$ occupe <strong>Le site octaédrique</strong>[span_128](start_span)[span_128](end_span).<br>
+                3. <strong>Partiel 2025 Q22 (Alliage $\text{AB}$ en CFC avec $R_A = 2\text{ \AA}$ et $R_B = 0,44\text{ \AA}$) :</strong> Comme $R_B = 0,44\text{ \AA} \approx 0,45\text{ \AA}$, $\text{B}$ s'insère dans les sites tétraédriques. Mais la formule est $\text{AB}$ : comme il y a $4$ atomes $\text{A}$ par maille CFC, il faut $4$ atomes $\text{B}$. Or il y a $8$ sites $T_d$ par maille ! $\text{B}$ occupe donc <strong>La moitié des sites tétraédriques</strong> ($8/2 = 4$)[span_129](start_span)[span_129](end_span).<br>
+                4. <strong>Partiel 2024 Q14 (Alliage d'insertion $\text{AB}$ en CFC parmi « Tous les sites... ») :</strong> Pour avoir $4$ atomes $\text{B}$ correspondant aux $4$ atomes $\text{A}$ en occupant <em>tous</em> les sites d'une famille, $\text{B}$ doit occuper <strong>Tous les sites octaédriques</strong> (car il y a $4$ sites $O_h$ par maille CFC)[span_130](start_span)[span_130](end_span).
                 </p>
             </div>
         </section>
@@ -751,36 +903,36 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Question du Sujet 2025[span_130](start_span)[span_130](end_span)[span_131](start_span)[span_131](end_span)[span_132](start_span)[span_132](end_span)</th>
+                                <th>Question du Sujet 2025[span_131](start_span)[span_131](end_span)[span_132](start_span)[span_132](end_span)[span_133](start_span)[span_133](end_span)</th>
                                 <th>Réponse Exacte</th>
                                 <th>Justification / Raisonnement</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td><strong>Q1</strong></td><td>Combien y a-t-il de sites octaédriques dans une maille CFC ?[span_133](start_span)[span_133](end_span)</td><td><strong>4</strong>[span_134](start_span)[span_134](end_span)</td><td>$1$ au centre $+ 12 \text{ arêtes} \times 1/4 = 4$.</td></tr>
-                            <tr><td><strong>Q2</strong></td><td>Coordinence d'un atome B en $(1/2;0;0)$ dans un CFC d'atomes A ?[span_135](start_span)[span_135](end_span)</td><td><strong>6</strong>[span_136](start_span)[span_136](end_span)</td><td>$(1/2;0;0)$ est le milieu d'une arête, donc un site octaédrique ($I_C = 6$).</td></tr>
-                            <tr><td><strong>Q3</strong></td><td>Formule chimique en CFC : A en $(0;0;0)$, B en $(1/4;1/4;1/4)$ et $(1/4;3/4;1/4)$ ?[span_137](start_span)[span_137](end_span)</td><td><strong>$\text{AB}_2$</strong> (maille $\text{A}_4\text{B}_8$)[span_138](start_span)[span_138](end_span)</td><td>Mode F ($\times 4$) : $1 \times 4 = 4\text{ A}$ et $2 \times 4 = 8\text{ B} \implies \text{AB}_2$.</td></tr>
-                            <tr><td><strong>Q4</strong></td><td>Expression de la masse volumique du chrome (structure CC) ?[span_139](start_span)[span_139](end_span)</td><td><strong>$2*M/(N*a^3)$</strong>[span_140](start_span)[span_140](end_span)</td><td>En CC, il y a $Z = 2$ atomes par maille.</td></tr>
-                            <tr><td><strong>Q5</strong></td><td>Positions justes nécessaires (1 seul type d'atome : sommets + faces + moitié des sites $T_d$) ?[span_141](start_span)[span_141](end_span)</td><td><strong>2</strong>[span_142](start_span)[span_142](end_span)</td><td>En mode F : $(0;0;0)$ génère sommets+faces (4 at.) et $(1/4;1/4;1/4)$ génère 4 sites $T_d$.</td></tr>
-                            <tr><td><strong>Q6</strong></td><td>Dans un cristal métallique CFC, la tangence des atomes se fait selon :[span_143](start_span)[span_143](end_span)</td><td><strong>la diagonale d'une face du cube</strong>[span_144](start_span)[span_144](end_span)</td><td>Relation $4R = a\sqrt{2}$.</td></tr>
-                            <tr><td><strong>Q7</strong></td><td>Empilement correspondant à une structure métallique hexagonale compacte (HC) ?[span_145](start_span)[span_145](end_span)</td><td><strong>ABAB</strong>[span_146](start_span)[span_146](end_span)</td><td>HC = ABAB ; CFC = ABCABC.</td></tr>
-                            <tr><td><strong>Q8</strong></td><td>Nombre de translations de réseau dans les structures cubiques P, I et F ?[span_147](start_span)[span_147](end_span)</td><td><strong>1 ; 2 et 4</strong>[span_148](start_span)[span_148](end_span)</td><td>P = 1, I = 2, F = 4.</td></tr>
-                            <tr><td><strong>Q9</strong></td><td>Cuivre ($4\text{ Cu/maille}, V_{\text{at}}=7\text{ \AA}^3$) vs Carbone ($8\text{ C/maille}, V_{\text{at}}=2\text{ \AA}^3$) en CFC : plus compacte ?[span_149](start_span)[span_149](end_span)</td><td><strong>le cuivre</strong> (ou <em>il manque des éléments</em>)[span_150](start_span)[span_150](end_span)</td><td>Sans $V_{\text{maille}}$, calcul impossible ; par cours : Cuivre CFC ($0,74$) > Carbone diamant ($0,34$).</td></tr>
-                            <tr><td><strong>Q10</strong></td><td>Mode de réseau de $\text{AgPt}$ : $\text{Ag}(0;0;0)(1/2;1/2;0)$ ; $\text{Pt}(1/2;0;1/2)(0;1/2;1/2)$ ?[span_151](start_span)[span_151](end_span)</td><td><strong>P</strong>[span_152](start_span)[span_152](end_span)</td><td>$\text{Ag} \neq \text{Pt}$ sur les faces, la symétrie F est brisée $\rightarrow$ mode Primitif P.</td></tr>
-                            <tr><td><strong>Q11</strong></td><td>La compacité s'exprime :[span_153](start_span)[span_153](end_span)</td><td><strong>sans unité</strong>[span_154](start_span)[span_154](end_span)</td><td>Rapport de deux volumes ($\text{\AA}^3 / \text{\AA}^3$).</td></tr>
-                            <tr><td><strong>Q12</strong></td><td>Les cristaux périodiques sont formés par la répétition triplement périodique dans l'espace :[span_155](start_span)[span_155](end_span)</td><td><strong>d'un motif</strong>[span_156](start_span)[span_156](end_span)</td><td>Définition fondamentale du cours.</td></tr>
-                            <tr><td><strong>Q13</strong></td><td>Expression du rayon du site octaédrique ($R_s$) en fonction de $R$ en CFC ?[span_157](start_span)[span_157](end_span)</td><td><strong>$R_s = (\sqrt{2}-1)*R$</strong>[span_158](start_span)[span_158](end_span)</td><td>Démontré par $2R + 2R_s = a = 2\sqrt{2}R$.</td></tr>
-                            <tr><td><strong>Q14</strong></td><td>Combien d'atomes de $\text{Mg}$ y a-t-il dans une maille CFC dont le motif est $\text{Mg}_2\text{S}$ ?[span_159](start_span)[span_159](end_span)</td><td><strong>8</strong>[span_160](start_span)[span_160](end_span)</td><td>4 nœuds en CFC $\times 2\text{ Mg par motif} = 8$.</td></tr>
-                            <tr><td><strong>Q15</strong></td><td>Atome en $(1/4;1/2;1/4)$ : autre position juste nécessaire en mode I ?[span_161](start_span)[span_161](end_span)</td><td><strong>$(3/4;0;3/4)$</strong>[span_162](start_span)[span_162](end_span)</td><td>On ajoute $(1/2;1/2;1/2)$ modulo 1.</td></tr>
-                            <tr><td><strong>Q16</strong></td><td>Coordinence du métal d'une structure CFC ?[span_163](start_span)[span_163](end_span)</td><td><strong>12</strong>[span_164](start_span)[span_164](end_span)</td><td>Structure compacte ($I_C = 12$).</td></tr>
-                            <tr><td><strong>Q17</strong></td><td>Polyèdre de coordination du métal au centre d'une maille CC ?[span_165](start_span)[span_165](end_span)</td><td><strong>cube</strong>[span_166](start_span)[span_166](end_span)</td><td>Entouré par les 8 sommets du cube ($I_C = 8$).</td></tr>
-                            <tr><td><strong>Q18</strong></td><td>Expression littérale de la compacité d'un CC ?[span_167](start_span)[span_167](end_span)</td><td><strong>$\pi\sqrt{3}/8$</strong>[span_168](start_span)[span_168](end_span)</td><td>Vaut environ $0,68$.</td></tr>
-                            <tr><td><strong>Q19</strong></td><td>Dans un cristal métallique CC, la relation de tangence est :[span_169](start_span)[span_169](end_span)</td><td><strong>$4R = a\sqrt{3}$</strong>[span_170](start_span)[span_170](end_span)</td><td>Contact sur la grande diagonale du cube.</td></tr>
-                            <tr><td><strong>Q20</strong></td><td>Atomes par maille en mode F avec des atomes en $(0;0;0)$ et $(1/4;1/4;1/4)$ ?[span_171](start_span)[span_171](end_span)</td><td><strong>8</strong>[span_172](start_span)[span_172](end_span)</td><td>2 positions $\times 4$ translations du mode F $= 8$.</td></tr>
-                            <tr><td><strong>Q21</strong></td><td>Bon ordre concernant l'évolution des tailles des sites interstitiels ?[span_173](start_span)[span_173](end_span)</td><td><strong>site cubique > site Oh > site Td</strong>[span_174](start_span)[span_174](end_span)</td><td>$0,732 R > 0,414 R > 0,225 R$.</td></tr>
-                            <tr><td><strong>Q22</strong></td><td>Alliage $\text{AB}$ en CFC ($R_A = 2\text{ \AA}, R_B = 0,44\text{ \AA}$) : sites occupés par B ?[span_175](start_span)[span_175](end_span)</td><td><strong>La moitié des sites tétraédriques</strong>[span_176](start_span)[span_176](end_span)</td><td>$0,44\text{ \AA} \rightarrow$ site $T_d$ (8 sites). Formule $\text{AB} \rightarrow 4\text{ B}$, soit la moitié de 8.</td></tr>
-                            <tr><td><strong>Q23</strong></td><td>Le décompte des atomes contenus dans la maille dépend :[span_177](start_span)[span_177](end_span)</td><td><strong>de la position des atomes</strong>[span_178](start_span)[span_178](end_span)</td><td>Sommet ($1/8$), arête ($1/4$), face ($1/2$), intérieur ($1$).</td></tr>
-                            <tr><td><strong>Q24</strong></td><td>Quelle est la coordinence d'un atome placé au centre d'un cubooctaèdre ?[span_179](start_span)[span_179](end_span)</td><td><strong>12</strong>[span_180](start_span)[span_180](end_span)</td><td>Un cubooctaèdre possède 12 sommets équidistants du centre.</td></tr>
+                            <tr><td><strong>Q1</strong></td><td>Combien y a-t-il de sites octaédriques dans une maille CFC ?[span_134](start_span)[span_134](end_span)</td><td><strong>4</strong>[span_135](start_span)[span_135](end_span)</td><td>$1$ au centre $+ 12 \text{ arêtes} \times 1/4 = 4$.</td></tr>
+                            <tr><td><strong>Q2</strong></td><td>Coordinence d'un atome B en $(1/2;0;0)$ dans un CFC d'atomes A ?[span_136](start_span)[span_136](end_span)</td><td><strong>6</strong>[span_137](start_span)[span_137](end_span)</td><td>$(1/2;0;0)$ est le milieu d'une arête, donc un site octaédrique ($I_C = 6$).</td></tr>
+                            <tr><td><strong>Q3</strong></td><td>Formule chimique en CFC : A en $(0;0;0)$, B en $(1/4;1/4;1/4)$ et $(1/4;3/4;1/4)$ ?[span_138](start_span)[span_138](end_span)</td><td><strong>$\text{AB}_2$</strong> (maille $\text{A}_4\text{B}_8$)[span_139](start_span)[span_139](end_span)</td><td>Mode F ($\times 4$) : $1 \times 4 = 4\text{ A}$ et $2 \times 4 = 8\text{ B} \implies \text{AB}_2$.</td></tr>
+                            <tr><td><strong>Q4</strong></td><td>Expression de la masse volumique du chrome (structure CC) ?[span_140](start_span)[span_140](end_span)</td><td><strong>$2*M/(N*a^3)$</strong>[span_141](start_span)[span_141](end_span)</td><td>En CC, il y a $Z = 2$ atomes par maille.</td></tr>
+                            <tr><td><strong>Q5</strong></td><td>Positions justes nécessaires (1 seul type d'atome : sommets + faces + moitié des sites $T_d$) ?[span_142](start_span)[span_142](end_span)</td><td><strong>2</strong>[span_143](start_span)[span_143](end_span)</td><td>En mode F : $(0;0;0)$ génère sommets+faces (4 at.) et $(1/4;1/4;1/4)$ génère 4 sites $T_d$.</td></tr>
+                            <tr><td><strong>Q6</strong></td><td>Dans un cristal métallique CFC, la tangence des atomes se fait selon :[span_144](start_span)[span_144](end_span)</td><td><strong>la diagonale d'une face du cube</strong>[span_145](start_span)[span_145](end_span)</td><td>Relation $4R = a\sqrt{2}$.</td></tr>
+                            <tr><td><strong>Q7</strong></td><td>Empilement correspondant à une structure métallique hexagonale compacte (HC) ?[span_146](start_span)[span_146](end_span)</td><td><strong>ABAB</strong>[span_147](start_span)[span_147](end_span)</td><td>HC = ABAB ; CFC = ABCABC.</td></tr>
+                            <tr><td><strong>Q8</strong></td><td>Nombre de translations de réseau dans les structures cubiques P, I et F ?[span_148](start_span)[span_148](end_span)</td><td><strong>1 ; 2 et 4</strong>[span_149](start_span)[span_149](end_span)</td><td>P = 1, I = 2, F = 4.</td></tr>
+                            <tr><td><strong>Q9</strong></td><td>Cuivre ($4\text{ Cu/maille}, V_{\text{at}}=7\text{ \AA}^3$) vs Carbone ($8\text{ C/maille}, V_{\text{at}}=2\text{ \AA}^3$) en CFC : plus compacte ?[span_150](start_span)[span_150](end_span)</td><td><strong>le cuivre</strong> (ou <em>il manque des éléments</em>)[span_151](start_span)[span_151](end_span)</td><td>Sans $V_{\text{maille}}$, calcul impossible ; par cours : Cuivre CFC ($0,74$) > Carbone diamant ($0,34$).</td></tr>
+                            <tr><td><strong>Q10</strong></td><td>Mode de réseau de $\text{AgPt}$ : $\text{Ag}(0;0;0)(1/2;1/2;0)$ ; $\text{Pt}(1/2;0;1/2)(0;1/2;1/2)$ ?[span_152](start_span)[span_152](end_span)</td><td><strong>P</strong>[span_153](start_span)[span_153](end_span)</td><td>$\text{Ag} \neq \text{Pt}$ sur les faces, la symétrie F est brisée $\rightarrow$ mode Primitif P.</td></tr>
+                            <tr><td><strong>Q11</strong></td><td>La compacité s'exprime :[span_154](start_span)[span_154](end_span)</td><td><strong>sans unité</strong>[span_155](start_span)[span_155](end_span)</td><td>Rapport de deux volumes ($\text{\AA}^3 / \text{\AA}^3$).</td></tr>
+                            <tr><td><strong>Q12</strong></td><td>Les cristaux périodiques sont formés par la répétition triplement périodique dans l'espace :[span_156](start_span)[span_156](end_span)</td><td><strong>d'un motif</strong>[span_157](start_span)[span_157](end_span)</td><td>Définition fondamentale du cours.</td></tr>
+                            <tr><td><strong>Q13</strong></td><td>Expression du rayon du site octaédrique ($R_s$) en fonction de $R$ en CFC ?[span_158](start_span)[span_158](end_span)</td><td><strong>$R_s = (\sqrt{2}-1)*R$</strong>[span_159](start_span)[span_159](end_span)</td><td>Démontré par $2R + 2R_s = a = 2\sqrt{2}R$.</td></tr>
+                            <tr><td><strong>Q14</strong></td><td>Combien d'atomes de $\text{Mg}$ y a-t-il dans une maille CFC dont le motif est $\text{Mg}_2\text{S}$ ?[span_160](start_span)[span_160](end_span)</td><td><strong>8</strong>[span_161](start_span)[span_161](end_span)</td><td>4 nœuds en CFC $\times 2\text{ Mg par motif} = 8$.</td></tr>
+                            <tr><td><strong>Q15</strong></td><td>Atome en $(1/4;1/2;1/4)$ : autre position juste nécessaire en mode I ?[span_162](start_span)[span_162](end_span)</td><td><strong>$(3/4;0;3/4)$</strong>[span_163](start_span)[span_163](end_span)</td><td>On ajoute $(1/2;1/2;1/2)$ modulo 1.</td></tr>
+                            <tr><td><strong>Q16</strong></td><td>Coordinence du métal d'une structure CFC ?[span_164](start_span)[span_164](end_span)</td><td><strong>12</strong>[span_165](start_span)[span_165](end_span)</td><td>Structure compacte ($I_C = 12$).</td></tr>
+                            <tr><td><strong>Q17</strong></td><td>Polyèdre de coordination du métal au centre d'une maille CC ?[span_166](start_span)[span_166](end_span)</td><td><strong>cube</strong>[span_167](start_span)[span_167](end_span)</td><td>Entouré par les 8 sommets du cube ($I_C = 8$).</td></tr>
+                            <tr><td><strong>Q18</strong></td><td>Expression littérale de la compacité d'un CC ?[span_168](start_span)[span_168](end_span)</td><td><strong>$\pi\sqrt{3}/8$</strong>[span_169](start_span)[span_169](end_span)</td><td>Vaut environ $0,68$.</td></tr>
+                            <tr><td><strong>Q19</strong></td><td>Dans un cristal métallique CC, la relation de tangence est :[span_170](start_span)[span_170](end_span)</td><td><strong>$4R = a\sqrt{3}$</strong>[span_171](start_span)[span_171](end_span)</td><td>Contact sur la grande diagonale du cube.</td></tr>
+                            <tr><td><strong>Q20</strong></td><td>Atomes par maille en mode F avec des atomes en $(0;0;0)$ et $(1/4;1/4;1/4)$ ?[span_172](start_span)[span_172](end_span)</td><td><strong>8</strong>[span_173](start_span)[span_173](end_span)</td><td>2 positions $\times 4$ translations du mode F $= 8$.</td></tr>
+                            <tr><td><strong>Q21</strong></td><td>Bon ordre concernant l'évolution des tailles des sites interstitiels ?[span_174](start_span)[span_174](end_span)</td><td><strong>site cubique > site Oh > site Td</strong>[span_175](start_span)[span_175](end_span)</td><td>$0,732 R > 0,414 R > 0,225 R$.</td></tr>
+                            <tr><td><strong>Q22</strong></td><td>Alliage $\text{AB}$ en CFC ($R_A = 2\text{ \AA}, R_B = 0,44\text{ \AA}$) : sites occupés par B ?[span_176](start_span)[span_176](end_span)</td><td><strong>La moitié des sites tétraédriques</strong>[span_177](start_span)[span_177](end_span)</td><td>$0,44\text{ \AA} \rightarrow$ site $T_d$ (8 sites). Formule $\text{AB} \rightarrow 4\text{ B}$, soit la moitié de 8.</td></tr>
+                            <tr><td><strong>Q23</strong></td><td>Le décompte des atomes contenus dans la maille dépend :[span_178](start_span)[span_178](end_span)</td><td><strong>de la position des atomes</strong>[span_179](start_span)[span_179](end_span)</td><td>Sommet ($1/8$), arête ($1/4$), face ($1/2$), intérieur ($1$).</td></tr>
+                            <tr><td><strong>Q24</strong></td><td>Quelle est la coordinence d'un atome placé au centre d'un cubooctaèdre ?[span_180](start_span)[span_180](end_span)</td><td><strong>12</strong>[span_181](start_span)[span_181](end_span)</td><td>Un cubooctaèdre possède 12 sommets équidistants du centre.</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -793,36 +945,36 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Question du Sujet 2024[span_181](start_span)[span_181](end_span)[span_182](start_span)[span_182](end_span)[span_183](start_span)[span_183](end_span)</th>
+                                <th>Question du Sujet 2024[span_182](start_span)[span_182](end_span)[span_183](start_span)[span_183](end_span)[span_184](start_span)[span_184](end_span)</th>
                                 <th>Réponse Exacte</th>
                                 <th>Justification / Raisonnement</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td><strong>Q1</strong></td><td>Atome en $(1/4;1/2;3/4)$ : autre position juste nécessaire en mode I ?[span_184](start_span)[span_184](end_span)</td><td><strong>$(3/4;0;1/4)$</strong>[span_185](start_span)[span_185](end_span)</td><td>$(1/4+1/2 ; 1/2+1/2 ; 3/4+1/2) = (3/4; 1; 5/4) \equiv (3/4; 0; 1/4)$.</td></tr>
-                            <tr><td><strong>Q2</strong></td><td>Expression littérale de la compacité d'une structure métallique CFC ?[span_186](start_span)[span_186](end_span)</td><td><strong>$\pi/(3\sqrt{2})$</strong>[span_187](start_span)[span_187](end_span)</td><td>Vaut environ $0,74$.</td></tr>
-                            <tr><td><strong>Q3</strong></td><td>Dans un cristal métallique CC, la tangence des atomes se fait selon :[span_188](start_span)[span_188](end_span)</td><td><strong>la diagonale du cube</strong>[span_189](start_span)[span_189](end_span)</td><td>Grande diagonale de longueur $a\sqrt{3}$.</td></tr>
-                            <tr><td><strong>Q4</strong></td><td>Formule en Cubique Primitif : A(1 pos), B(2 pos), C(3 pos) ?[span_190](start_span)[span_190](end_span)</td><td><strong>$\text{AB}_2\text{C}_3$</strong>[span_191](start_span)[span_191](end_span)</td><td>En mode P, 1 position dans $[0;1[$ = 1 atome dans la maille.</td></tr>
-                            <tr><td><strong>Q5</strong></td><td>Mode de réseau du composé $\text{AuCu}$ : $\text{Au}(0;0;0)(1/2;1/2;0)$ ; $\text{Cu}(1/2;0;1/2)(0;1/2;1/2)$ ?[span_192](start_span)[span_192](end_span)</td><td><strong>P</strong>[span_193](start_span)[span_193](end_span)</td><td>$\text{Au} \neq \text{Cu}$, donc mode P.</td></tr>
-                            <tr><td><strong>Q6</strong></td><td>Alliage $\text{AB}$ avec $R_A = 2\text{ \AA}$ et $R_B = 0,44\text{ \AA}$ : type d'alliage ?[span_194](start_span)[span_194](end_span)</td><td><strong>Alliage d'insertion</strong>[span_195](start_span)[span_195](end_span)</td><td>$R_B \ll R_A$, B s'insère dans les sites interstitiels.</td></tr>
-                            <tr><td><strong>Q7</strong></td><td>La coordinence du métal d'une structure cubique simple est :[span_196](start_span)[span_196](end_span)</td><td><strong>6</strong>[span_197](start_span)[span_197](end_span)</td><td>6 voisins le long des 3 axes à distance $a$.</td></tr>
-                            <tr><td><strong>Q8</strong></td><td>Compacité maximale d'une structure composée d'un seul type d'atome ?[span_198](start_span)[span_198](end_span)</td><td><strong>0,74</strong>[span_199](start_span)[span_199](end_span)</td><td>Atteinte pour les empilements compacts CFC et HC.</td></tr>
-                            <tr><td><strong>Q9</strong></td><td>Expression de la masse volumique du chrome (structure CC) ?[span_200](start_span)[span_200](end_span)</td><td><strong>$2*M/(N*a^3)$</strong>[span_201](start_span)[span_201](end_span)</td><td>Identique à la Q4 de 2025 ($Z=2$).</td></tr>
-                            <tr><td><strong>Q10</strong></td><td>Bon ordre concernant l'évolution des tailles des sites interstitiels ?[span_202](start_span)[span_202](end_span)</td><td><strong>site cubique > site Oh > site Td</strong>[span_203](start_span)[span_203](end_span)</td><td>Identique à la Q21 de 2025.</td></tr>
-                            <tr><td><strong>Q11</strong></td><td>Nombre de translations de réseau dans les structures cubiques P, I et F ?[span_204](start_span)[span_204](end_span)</td><td><strong>1 ; 2 et 4</strong>[span_205](start_span)[span_205](end_span)</td><td>Identique à la Q8 de 2025.</td></tr>
-                            <tr><td><strong>Q12</strong></td><td>Atomes par maille en mode F avec des atomes en $(0;0;0)$ et $(1/2;0;0)$ ?[span_206](start_span)[span_206](end_span)</td><td><strong>8</strong>[span_207](start_span)[span_207](end_span)</td><td>2 positions $\times 4$ translations du mode F $= 8$ (type $\text{NaCl}$).</td></tr>
-                            <tr><td><strong>Q13</strong></td><td>Expression du rayon du site octaédrique ($R_s$) en fonction de $R$ en CFC ?[span_208](start_span)[span_208](end_span)</td><td><strong>$R_s = (\sqrt{2}-1)*R$</strong>[span_209](start_span)[span_209](end_span)</td><td>Identique à la Q13 de 2025.</td></tr>
-                            <tr><td><strong>Q14</strong></td><td>Alliage d'insertion de formule $\text{AB}$ en CFC : sites occupés par B ?[span_210](start_span)[span_210](end_span)</td><td><strong>Tous les sites octaédriques</strong>[span_211](start_span)[span_211](end_span)</td><td>4 atomes A $\implies$ il faut 4 atomes B, soit les 4 sites $O_h$.</td></tr>
-                            <tr><td><strong>Q15</strong></td><td>Polyèdre de coordination du métal au centre d'une maille CC ?[span_212](start_span)[span_212](end_span)</td><td><strong>cubique</strong>[span_213](start_span)[span_213](end_span)</td><td>Identique à la Q17 de 2025.</td></tr>
-                            <tr><td><strong>Q16</strong></td><td>Alliage binaire $\text{AB}$ : A en $(0;0;0)$ et B en $(1/2;1/2;1/2)$. Mode de réseau ?[span_214](start_span)[span_214](end_span)</td><td><strong>Mode P</strong>[span_215](start_span)[span_215](end_span)</td><td>Comme $\text{A} \neq \text{B}$, ce n'est pas un mode I mais un mode P.</td></tr>
-                            <tr><td><strong>Q17</strong></td><td>Dans un cristal métallique CFC, la relation de tangence des atomes est :[span_216](start_span)[span_216](end_span)</td><td><strong>$4R = a\sqrt{2}$</strong>[span_217](start_span)[span_217](end_span)</td><td>Contact sur la diagonale d'une face.</td></tr>
-                            <tr><td><strong>Q18</strong></td><td>Alliage $\text{AB}$ avec $R_A = 2\text{ \AA}$ et $R_B = 0,8\text{ \AA}$ : site occupé par B ?[span_218](start_span)[span_218](end_span)</td><td><strong>Le site octaédrique</strong>[span_219](start_span)[span_219](end_span)</td><td>$R_{Oh} = 0,414 \times 2 = 0,828\text{ \AA} \ge 0,8\text{ \AA}$.</td></tr>
-                            <tr><td><strong>Q19</strong></td><td>Quel est le polyèdre de coordination d'un atome en coordinence 8 ?[span_220](start_span)[span_220](end_span)</td><td><strong>Cube</strong>[span_221](start_span)[span_221](end_span)</td><td>8 sommets = Cube.</td></tr>
-                            <tr><td><strong>Q20</strong></td><td>La coordinence du métal d'une structure hexagonale compacte (HC) est :[span_222](start_span)[span_222](end_span)</td><td><strong>12</strong>[span_223](start_span)[span_223](end_span)</td><td>Structure compacte comme le CFC ($I_C = 12$).</td></tr>
-                            <tr><td><strong>Q21</strong></td><td>La compacité correspond au :[span_224](start_span)[span_224](end_span)</td><td><strong>taux de remplissage de la maille</strong>[span_225](start_span)[span_225](end_span)</td><td>Définition du cours.</td></tr>
-                            <tr><td><strong>Q22</strong></td><td>Combien y a-t-il de sites octaédriques dans une maille CFC ?[span_226](start_span)[span_226](end_span)</td><td><strong>4</strong>[span_227](start_span)[span_227](end_span)</td><td>Identique à la Q1 de 2025.</td></tr>
-                            <tr><td><strong>Q23</strong></td><td>Coordinence d'un atome B situé en $(1/2;1/2;1/2)$ dans un CFC d'atomes A ?[span_228](start_span)[span_228](end_span)</td><td><strong>6</strong>[span_229](start_span)[span_229](end_span)</td><td>$(1/2;1/2;1/2)$ est le site octaédrique central du CFC ($I_C = 6$).</td></tr>
-                            <tr><td><strong>Q24</strong></td><td>Rhodium ($4\text{ at/maille}, V=60\text{ \AA}^3$) vs Germanium ($8\text{ at/maille}, V=180\text{ \AA}^3$) : plus compacte ?[span_230](start_span)[span_230](end_span)</td><td><strong>le Rhodium</strong>[span_231](start_span)[span_231](end_span)</td><td>$4/60 = 1/15 > 8/180 = 1/22,5$.</td></tr>
+                            <tr><td><strong>Q1</strong></td><td>Atome en $(1/4;1/2;3/4)$ : autre position juste nécessaire en mode I ?[span_185](start_span)[span_185](end_span)</td><td><strong>$(3/4;0;1/4)$</strong>[span_186](start_span)[span_186](end_span)</td><td>$(1/4+1/2 ; 1/2+1/2 ; 3/4+1/2) = (3/4; 1; 5/4) \equiv (3/4; 0; 1/4)$.</td></tr>
+                            <tr><td><strong>Q2</strong></td><td>Expression littérale de la compacité d'une structure métallique CFC ?[span_187](start_span)[span_187](end_span)</td><td><strong>$\pi/(3\sqrt{2})$</strong>[span_188](start_span)[span_188](end_span)</td><td>Vaut environ $0,74$.</td></tr>
+                            <tr><td><strong>Q3</strong></td><td>Dans un cristal métallique CC, la tangence des atomes se fait selon :[span_189](start_span)[span_189](end_span)</td><td><strong>la diagonale du cube</strong>[span_190](start_span)[span_190](end_span)</td><td>Grande diagonale de longueur $a\sqrt{3}$.</td></tr>
+                            <tr><td><strong>Q4</strong></td><td>Formule en Cubique Primitif : A(1 pos), B(2 pos), C(3 pos) ?[span_191](start_span)[span_191](end_span)</td><td><strong>$\text{AB}_2\text{C}_3$</strong>[span_192](start_span)[span_192](end_span)</td><td>En mode P, 1 position dans $[0;1[$ = 1 atome dans la maille.</td></tr>
+                            <tr><td><strong>Q5</strong></td><td>Mode de réseau du composé $\text{AuCu}$ : $\text{Au}(0;0;0)(1/2;1/2;0)$ ; $\text{Cu}(1/2;0;1/2)(0;1/2;1/2)$ ?[span_193](start_span)[span_193](end_span)</td><td><strong>P</strong>[span_194](start_span)[span_194](end_span)</td><td>$\text{Au} \neq \text{Cu}$, donc mode P.</td></tr>
+                            <tr><td><strong>Q6</strong></td><td>Alliage $\text{AB}$ avec $R_A = 2\text{ \AA}$ et $R_B = 0,44\text{ \AA}$ : type d'alliage ?[span_195](start_span)[span_195](end_span)</td><td><strong>Alliage d'insertion</strong>[span_196](start_span)[span_196](end_span)</td><td>$R_B \ll R_A$, B s'insère dans les sites interstitiels.</td></tr>
+                            <tr><td><strong>Q7</strong></td><td>La coordinence du métal d'une structure cubique simple est :[span_197](start_span)[span_197](end_span)</td><td><strong>6</strong>[span_198](start_span)[span_198](end_span)</td><td>6 voisins le long des 3 axes à distance $a$.</td></tr>
+                            <tr><td><strong>Q8</strong></td><td>Compacité maximale d'une structure composée d'un seul type d'atome ?[span_199](start_span)[span_199](end_span)</td><td><strong>0,74</strong>[span_200](start_span)[span_200](end_span)</td><td>Atteinte pour les empilements compacts CFC et HC.</td></tr>
+                            <tr><td><strong>Q9</strong></td><td>Expression de la masse volumique du chrome (structure CC) ?[span_201](start_span)[span_201](end_span)</td><td><strong>$2*M/(N*a^3)$</strong>[span_202](start_span)[span_202](end_span)</td><td>Identique à la Q4 de 2025 ($Z=2$).</td></tr>
+                            <tr><td><strong>Q10</strong></td><td>Bon ordre concernant l'évolution des tailles des sites interstitiels ?[span_203](start_span)[span_203](end_span)</td><td><strong>site cubique > site Oh > site Td</strong>[span_204](start_span)[span_204](end_span)</td><td>Identique à la Q21 de 2025.</td></tr>
+                            <tr><td><strong>Q11</strong></td><td>Nombre de translations de réseau dans les structures cubiques P, I et F ?[span_205](start_span)[span_205](end_span)</td><td><strong>1 ; 2 et 4</strong>[span_206](start_span)[span_206](end_span)</td><td>Identique à la Q8 de 2025.</td></tr>
+                            <tr><td><strong>Q12</strong></td><td>Atomes par maille en mode F avec des atomes en $(0;0;0)$ et $(1/2;0;0)$ ?[span_207](start_span)[span_207](end_span)</td><td><strong>8</strong>[span_208](start_span)[span_208](end_span)</td><td>2 positions $\times 4$ translations du mode F $= 8$ (type $\text{NaCl}$).</td></tr>
+                            <tr><td><strong>Q13</strong></td><td>Expression du rayon du site octaédrique ($R_s$) en fonction de $R$ en CFC ?[span_209](start_span)[span_209](end_span)</td><td><strong>$R_s = (\sqrt{2}-1)*R$</strong>[span_210](start_span)[span_210](end_span)</td><td>Identique à la Q13 de 2025.</td></tr>
+                            <tr><td><strong>Q14</strong></td><td>Alliage d'insertion de formule $\text{AB}$ en CFC : sites occupés par B ?[span_211](start_span)[span_211](end_span)</td><td><strong>Tous les sites octaédriques</strong>[span_212](start_span)[span_212](end_span)</td><td>4 atomes A $\implies$ il faut 4 atomes B, soit les 4 sites $O_h$.</td></tr>
+                            <tr><td><strong>Q15</strong></td><td>Polyèdre de coordination du métal au centre d'une maille CC ?[span_213](start_span)[span_213](end_span)</td><td><strong>cubique</strong>[span_214](start_span)[span_214](end_span)</td><td>Identique à la Q17 de 2025.</td></tr>
+                            <tr><td><strong>Q16</strong></td><td>Alliage binaire $\text{AB}$ : A en $(0;0;0)$ et B en $(1/2;1/2;1/2)$. Mode de réseau ?[span_215](start_span)[span_215](end_span)</td><td><strong>Mode P</strong>[span_216](start_span)[span_216](end_span)</td><td>Comme $\text{A} \neq \text{B}$, ce n'est pas un mode I mais un mode P.</td></tr>
+                            <tr><td><strong>Q17</strong></td><td>Dans un cristal métallique CFC, la relation de tangence des atomes est :[span_217](start_span)[span_217](end_span)</td><td><strong>$4R = a\sqrt{2}$</strong>[span_218](start_span)[span_218](end_span)</td><td>Contact sur la diagonale d'une face.</td></tr>
+                            <tr><td><strong>Q18</strong></td><td>Alliage $\text{AB}$ avec $R_A = 2\text{ \AA}$ et $R_B = 0,8\text{ \AA}$ : site occupé par B ?[span_219](start_span)[span_219](end_span)</td><td><strong>Le site octaédrique</strong>[span_220](start_span)[span_220](end_span)</td><td>$R_{Oh} = 0,414 \times 2 = 0,828\text{ \AA} \ge 0,8\text{ \AA}$.</td></tr>
+                            <tr><td><strong>Q19</strong></td><td>Quel est le polyèdre de coordination d'un atome en coordinence 8 ?[span_221](start_span)[span_221](end_span)</td><td><strong>Cube</strong>[span_222](start_span)[span_222](end_span)</td><td>8 sommets = Cube.</td></tr>
+                            <tr><td><strong>Q20</strong></td><td>La coordinence du métal d'une structure hexagonale compacte (HC) est :[span_223](start_span)[span_223](end_span)</td><td><strong>12</strong>[span_224](start_span)[span_224](end_span)</td><td>Structure compacte comme le CFC ($I_C = 12$).</td></tr>
+                            <tr><td><strong>Q21</strong></td><td>La compacité correspond au :[span_225](start_span)[span_225](end_span)</td><td><strong>taux de remplissage de la maille</strong>[span_226](start_span)[span_226](end_span)</td><td>Définition du cours.</td></tr>
+                            <tr><td><strong>Q22</strong></td><td>Combien y a-t-il de sites octaédriques dans une maille CFC ?[span_227](start_span)[span_227](end_span)</td><td><strong>4</strong>[span_228](start_span)[span_228](end_span)</td><td>Identique à la Q1 de 2025.</td></tr>
+                            <tr><td><strong>Q23</strong></td><td>Coordinence d'un atome B situé en $(1/2;1/2;1/2)$ dans un CFC d'atomes A ?[span_229](start_span)[span_229](end_span)</td><td><strong>6</strong>[span_230](start_span)[span_230](end_span)</td><td>$(1/2;1/2;1/2)$ est le site octaédrique central du CFC ($I_C = 6$).</td></tr>
+                            <tr><td><strong>Q24</strong></td><td>Rhodium ($4\text{ at/maille}, V=60\text{ \AA}^3$) vs Germanium ($8\text{ at/maille}, V=180\text{ \AA}^3$) : plus compacte ?[span_231](start_span)[span_231](end_span)</td><td><strong>le Rhodium</strong>[span_232](start_span)[span_232](end_span)</td><td>$4/60 = 1/15 > 8/180 = 1/22,5$.</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -875,22 +1027,65 @@
 
             <!-- Quiz Flash -->
             <div class="quiz-box">
-                <div class="quiz-question" id="quizQuestion">Prêt à tester tes réflexes en conditions d'examen ?</div>
+                <div class="quiz-question" id="quizQuestion">Prêt à tester tes réflexes rapides ?</div>
                 <div>
                     <button class="quiz-btn secondary" id="showAnsBtn" onclick="revealQuizAnswer()" style="display: none;">Voir la réponse</button>
-                    <button class="quiz-btn" id="nextQuizBtn" onclick="nextQuestion()">Lancer le Quiz</button>
+                    <button class="quiz-btn" id="nextQuizBtn" onclick="nextQuestion()">Lancer une question</button>
                 </div>
                 <div class="quiz-answer" id="quizAnswer"></div>
             </div>
         </section>
 
+        <!-- SECTION 12 : SIMULATEUR D'EXAMEN CHRONOMÉTRÉ (45 MINUTES) -->
+        <section id="sec-simulateur">
+            <h2>12. Simulateur d'Examen Chronométré (Conditions Réelles - 45 min)</h2>
+            <div class="sim-container">
+                <div id="simSetup">
+                    <p style="margin-bottom: 15px; color: var(--text-muted);">
+                        Entraîne-toi exactement dans les conditions du Contrôle Continu CHI101/CHI102 : <strong>24 questions à 1 point, note finale ramenée et plafonnée sur 20</strong> (tu as donc droit à 4 erreurs tout en ayant 20/20 !), temps limité à <strong>45 minutes</strong> sans calculatrice ni document[span_233](start_span)[span_233](end_span)[span_234](start_span)[span_234](end_span).
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 20px;">
+                        <label style="font-weight: 600;">Choisis ton sujet :</label>
+                        <select id="simModeSelect" style="padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); font-weight: 600; flex: 1; min-width: 260px;">
+                            <option value="random">🎲 Mélange Aléatoire (24 questions tirées de 2024 & 2025)</option>
+                            <option value="2025">📄 Sujet Officiel Complet — 21 Octobre 2025 (24 questions)</option>
+                            <option value="2024">📄 Sujet Officiel Complet — 22 Octobre 2024 (24 questions)</option>
+                        </select>
+                        <button class="quiz-btn" style="background: #16a34a; margin: 0; padding: 12px 24px;" onclick="startExamSimulation()">⏱️ Démarrer l'épreuve (45:00)</button>
+                    </div>
+                </div>
+
+                <!-- Interface active de l'examen -->
+                <div id="simActiveArea" style="display: none;">
+                    <div class="sim-header-bar">
+                        <div>
+                            <span id="simModeTitle" style="font-weight: 700; font-size: 1rem; display: block;">Contrôle Continu Cristallochimie</span>
+                            <span id="simProgressText" style="font-size: 0.85rem; color: #cbd5e1;">0 / 24 questions répondues</span>
+                        </div>
+                        <div class="sim-timer" id="simTimerDisplay">45:00</div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="quiz-btn" style="background: #22c55e; margin: 0;" id="simSubmitBtn" onclick="submitExamSimulation()">Valider ma copie</button>
+                            <button class="quiz-btn secondary" style="margin: 0;" onclick="resetExamSimulation()">Quitter / Nouveau</button>
+                        </div>
+                    </div>
+
+                    <div id="simScoreBanner" class="sim-score-banner"></div>
+                    <div id="simQuestionsList"></div>
+                </div>
+            </div>
+        </section>
+
         <footer>
-            <p>Module de révision CHI101 / CHI102 — Université Grenoble Alpes. Mis à jour avec les annales 2024 & 2025.</p>
+            <p>Module de révision CHI101 / CHI102 — Université Grenoble Alpes. Mis à jour avec les annales 2024 & 2025[span_235](start_span)[span_235](end_span)[span_236](start_span)[span_236](end_span).</p>
         </footer>
     </div>
 
     <script>
-        // Fonction utilitaire pour relancer le rendu MathJax sur les éléments dynamiques
+        // Fonction utilitaire pour nettoyer d'éventuelles balises de citation et relancer MathJax
+        function cleanStr(str) {
+            return (str || "").replace(/\s*\[cite:\s*[\d,\s]+\]/g, '');
+        }
+
         function renderMath() {
             if (window.MathJax && window.MathJax.typesetPromise) {
                 window.MathJax.typesetPromise();
@@ -976,28 +1171,28 @@
             renderMath();
         }
 
-        // 24 Flashcards couvrant l'intégralité des deux partiels
+        // 20 Flashcards couvrant l'intégralité des deux partiels
         const flashcardsData = [
-            { q: "Combien y a-t-il de sites octaédriques (Oh) dans une maille CFC et où sont-ils ?", a: "4 sites Oh par maille : 1 au centre (1/2;1/2;1/2) + 12 aux milieux des arêtes (12 × 1/4 = 3)." },
+            { q: "Combien y a-t-il de sites octaédriques (Oh) dans une maille CFC et où sont-ils ?[span_237](start_span)[span_237](end_span)[span_238](start_span)[span_238](end_span)", a: "4 sites Oh par maille : 1 au centre (1/2;1/2;1/2) + 12 aux milieux des arêtes (12 × 1/4 = 3).[span_239](start_span)[span_239](end_span)[span_240](start_span)[span_240](end_span)" },
             { q: "Combien y a-t-il de sites tétraédriques (Td) dans une maille CFC ?", a: "8 sites Td par maille (au centre des 8 petits cubes d'arête a/2)." },
-            { q: "Quel est le nombre de translations de réseau dans les structures cubiques P, I et F ?", a: "Respectivement 1 ; 2 et 4." },
-            { q: "Quelle est la relation de tangence et l'axe de tangence pour un Cubique Centré (CC) ?", a: "4R = a√3, le long de la grande diagonale du cube." },
-            { q: "Quelle est la relation de tangence et l'axe de tangence pour un Cubique Faces Centrées (CFC) ?", a: "4R = a√2, le long de la diagonale d'une face du cube." },
-            { q: "Quelle est l'expression littérale de la compacité d'un Cubique Centré (CC) ?", a: "π√3 / 8 (environ 0,68)." },
-            { q: "Quelle est l'expression littérale de la compacité d'un Cubique Faces Centrées (CFC) ?", a: "π / (3√2) (environ 0,74, compacité maximale)." },
-            { q: "Quelle est l'expression du rayon d'un site octaédrique (Rs) en fonction de R dans un CFC ?", a: "Rs = (√2 - 1) × R ≈ 0,414 R." },
-            { q: "Quel est l'ordre de taille des sites interstitiels laissés par des atomes identiques ?", a: "site cubique (0,732 R) > site Oh (0,414 R) > site Td (0,225 R)." },
-            { q: "Quelle est l'expression de la masse volumique du chrome (qui cristallise en CC) ?", a: "2 × M / (N × a³) car Z = 2 en structure CC." },
-            { q: "Dans un alliage AB, A est en (0;0;0) et B en (1/2;1/2;1/2). Quel est le mode de réseau ?", a: "Mode P (Primitif) ! Car A et B sont deux espèces chimiques différentes." },
-            { q: "Quel est le mode de réseau de AuCu ou AgPt avec Au/Ag en (0;0;0),(1/2;1/2;0) et Cu/Pt en (1/2;0;1/2),(0;1/2;1/2) ?", a: "Mode P (Primitif) ! Car toutes les faces n'ont pas le même atome." },
-            { q: "Considérant un atome en (1/4 ; 1/2 ; 1/4), quelle autre position trouve-t-on en mode I ?", a: "(3/4 ; 0 ; 3/4) en ajoutant (+1/2 ; +1/2 ; +1/2) modulo 1." },
-            { q: "Considérant un atome en (1/4 ; 1/2 ; 3/4), quelle autre position trouve-t-on en mode I ?", a: "(3/4 ; 0 ; 1/4) en ajoutant (+1/2 ; +1/2 ; +1/2) modulo 1." },
-            { q: "Quel est le polyèdre de coordination d'un atome au centre d'une maille CC (coordinence 8) ?", a: "Un cube (polyèdre cubique)." },
-            { q: "Quelle est la coordinence d'un atome placé au centre d'un cubooctaèdre (structure CFC) ?", a: "12." },
-            { q: "Les cristaux périodiques sont formés par la répétition triplement périodique dans l'espace de quoi ?", a: "D'un motif." },
-            { q: "Alliage AB en CFC avec Ra = 2 Å et Rb = 0,44 Å : quels sites sont occupés par B ?", a: "La moitié des sites tétraédriques (car Rb ≈ 0,45 Å = site Td, et il faut 4 B sur les 8 sites Td)." },
-            { q: "Alliage AB avec Ra = 2 Å et Rb = 0,8 Å : quel type de site est occupé par B ?", a: "Le site octaédrique (car Roh = 0,414 × 2 = 0,828 Å ≥ 0,8 Å)." },
-            { q: "Combien d'atomes de Mg y a-t-il dans une maille CFC dont le motif est Mg₂S ?", a: "8 atomes de Mg (4 motifs par maille CFC × 2 Mg par motif)." }
+            { q: "Quel est le nombre de translations de réseau dans les structures cubiques P, I et F ?[span_241](start_span)[span_241](end_span)[span_242](start_span)[span_242](end_span)", a: "Respectivement 1 ; 2 et 4.[span_243](start_span)[span_243](end_span)[span_244](start_span)[span_244](end_span)" },
+            { q: "Quelle est la relation de tangence et l'axe de tangence pour un Cubique Centré (CC) ?[span_245](start_span)[span_245](end_span)[span_246](start_span)[span_246](end_span)", a: "4R = a√3, le long de la grande diagonale du cube.[span_247](start_span)[span_247](end_span)[span_248](start_span)[span_248](end_span)" },
+            { q: "Quelle est la relation de tangence et l'axe de tangence pour un Cubique Faces Centrées (CFC) ?[span_249](start_span)[span_249](end_span)[span_250](start_span)[span_250](end_span)", a: "4R = a√2, le long de la diagonale d'une face du cube.[span_251](start_span)[span_251](end_span)[span_252](start_span)[span_252](end_span)" },
+            { q: "Quelle est l'expression littérale de la compacité d'un Cubique Centré (CC) ?[span_253](start_span)[span_253](end_span)", a: "π√3 / 8 (environ 0,68).[span_254](start_span)[span_254](end_span)[span_255](start_span)[span_255](end_span)" },
+            { q: "Quelle est l'expression littérale de la compacité d'un Cubique Faces Centrées (CFC) ?[span_256](start_span)[span_256](end_span)", a: "π / (3√2) (environ 0,74, compacité maximale).[span_257](start_span)[span_257](end_span)[span_258](start_span)[span_258](end_span)" },
+            { q: "Quelle est l'expression du rayon d'un site octaédrique (Rs) en fonction de R dans un CFC ?[span_259](start_span)[span_259](end_span)[span_260](start_span)[span_260](end_span)", a: "Rs = (√2 - 1) × R ≈ 0,414 R.[span_261](start_span)[span_261](end_span)[span_262](start_span)[span_262](end_span)" },
+            { q: "Quel est l'ordre de taille des sites interstitiels laissés par des atomes identiques ?[span_263](start_span)[span_263](end_span)[span_264](start_span)[span_264](end_span)", a: "site cubique (0,732 R) > site Oh (0,414 R) > site Td (0,225 R).[span_265](start_span)[span_265](end_span)[span_266](start_span)[span_266](end_span)" },
+            { q: "Quelle est l'expression de la masse volumique du chrome (qui cristallise en CC) ?[span_267](start_span)[span_267](end_span)[span_268](start_span)[span_268](end_span)", a: "2 × M / (N × a³) car Z = 2 en structure CC.[span_269](start_span)[span_269](end_span)[span_270](start_span)[span_270](end_span)" },
+            { q: "Dans un alliage AB, A est en (0;0;0) et B en (1/2;1/2;1/2). Quel est le mode de réseau ?[span_271](start_span)[span_271](end_span)", a: "Mode P (Primitif) ! Car A et B sont deux espèces chimiques différentes.[span_272](start_span)[span_272](end_span)" },
+            { q: "Quel est le mode de réseau de AuCu ou AgPt avec Au/Ag en (0;0;0),(1/2;1/2;0) et Cu/Pt en (1/2;0;1/2),(0;1/2;1/2) ?[span_273](start_span)[span_273](end_span)[span_274](start_span)[span_274](end_span)", a: "Mode P (Primitif) ! Car toutes les faces n'ont pas le même atome.[span_275](start_span)[span_275](end_span)[span_276](start_span)[span_276](end_span)" },
+            { q: "Considérant un atome en (1/4 ; 1/2 ; 1/4), quelle autre position trouve-t-on en mode I ?[span_277](start_span)[span_277](end_span)", a: "(3/4 ; 0 ; 3/4) en ajoutant (+1/2 ; +1/2 ; +1/2) modulo 1.[span_278](start_span)[span_278](end_span)" },
+            { q: "Considérant un atome en (1/4 ; 1/2 ; 3/4), quelle autre position trouve-t-on en mode I ?[span_279](start_span)[span_279](end_span)", a: "(3/4 ; 0 ; 1/4) en ajoutant (+1/2 ; +1/2 ; +1/2) modulo 1.[span_280](start_span)[span_280](end_span)" },
+            { q: "Quel est le polyèdre de coordination d'un atome au centre d'une maille CC (coordinence 8) ?[span_281](start_span)[span_281](end_span)[span_282](start_span)[span_282](end_span)[span_283](start_span)[span_283](end_span)", a: "Un cube (polyèdre cubique).[span_284](start_span)[span_284](end_span)[span_285](start_span)[span_285](end_span)[span_286](start_span)[span_286](end_span)" },
+            { q: "Quelle est la coordinence d'un atome placé au centre d'un cubooctaèdre (structure CFC) ?[span_287](start_span)[span_287](end_span)", a: "12.[span_288](start_span)[span_288](end_span)" },
+            { q: "Les cristaux périodiques sont formés par la répétition triplement périodique dans l'espace de quoi ?[span_289](start_span)[span_289](end_span)", a: "D'un motif.[span_290](start_span)[span_290](end_span)" },
+            { q: "Alliage AB en CFC avec Ra = 2 Å et Rb = 0,44 Å : quels sites sont occupés par B ?[span_291](start_span)[span_291](end_span)", a: "La moitié des sites tétraédriques (car Rb ≈ 0,45 Å = site Td, et il faut 4 B sur les 8 sites Td).[span_292](start_span)[span_292](end_span)" },
+            { q: "Alliage AB avec Ra = 2 Å et Rb = 0,8 Å : quel type de site est occupé par B ?[span_293](start_span)[span_293](end_span)", a: "Le site octaédrique (car Roh = 0,414 × 2 = 0,828 Å ≥ 0,8 Å).[span_294](start_span)[span_294](end_span)" },
+            { q: "Combien d'atomes de Mg y a-t-il dans une maille CFC dont le motif est Mg₂S ?[span_295](start_span)[span_295](end_span)", a: "8 atomes de Mg (4 motifs par maille CFC × 2 Mg par motif).[span_296](start_span)[span_296](end_span)" }
         ];
 
         let currentCardIdx = 0;
@@ -1006,9 +1201,9 @@
         function updateCard() {
             let contentDiv = document.getElementById('flashcardContent');
             if (!showAnswer) {
-                contentDiv.innerHTML = `<span style="color: var(--text-muted); font-size: 0.85rem; display: block; margin-bottom: 8px;">Question ${currentCardIdx + 1}/${flashcardsData.length}</span>${flashcardsData[currentCardIdx].q}`;
+                contentDiv.innerHTML = `<span style="color: var(--text-muted); font-size: 0.85rem; display: block; margin-bottom: 8px;">Question ${currentCardIdx + 1}/${flashcardsData.length}</span>${cleanStr(flashcardsData[currentCardIdx].q)}`;
             } else {
-                contentDiv.innerHTML = `<span style="color: #16a34a; font-size: 0.85rem; display: block; margin-bottom: 8px;">Réponse :</span><span style="color: #15803d;">${flashcardsData[currentCardIdx].a}</span>`;
+                contentDiv.innerHTML = `<span style="color: #16a34a; font-size: 0.85rem; display: block; margin-bottom: 8px;">Réponse :</span><span style="color: #15803d;">${cleanStr(flashcardsData[currentCardIdx].a)}</span>`;
             }
             renderMath();
         }
@@ -1017,23 +1212,23 @@
         function nextCard() { showAnswer = false; currentCardIdx = (currentCardIdx + 1) % flashcardsData.length; updateCard(); }
         function prevCard() { showAnswer = false; currentCardIdx = (currentCardIdx - 1 + flashcardsData.length) % flashcardsData.length; updateCard(); }
 
-        // Quiz Flash interactif corrigé
+        // Quiz Flash interactif
         const quizData = [
-            { q: "Combien d'atomes par maille y a-t-il dans une structure en mode F avec des atomes en (0;0;0) et (1/4;1/4;1/4) ?", a: "8 atomes par maille (2 positions justes nécessaires × 4 translations du mode F)." },
-            { q: "Dans une structure CFC d'atomes A, quelle est la coordinence d'un atome B situé en (1/2;0;0) ou (1/2;1/2;1/2) ?", a: "Coordinence 6 (car ce sont les positions des sites octaédriques)." },
-            { q: "Quel est l'empilement correspondant à une structure métallique hexagonale compacte (HC) ?", a: "Empilement ABAB (alors que le CFC est ABCABC)." },
-            { q: "De quoi dépend uniquement le décompte des atomes contenus dans une maille ?", a: "Uniquement de la position des atomes (sommet, arête, face, intérieur)." },
-            { q: "Sachant que le Rhodium (4 at/maille, V = 60 Å³) et le Germanium (8 at/maille, V = 180 Å³) ont un volume atomique similaire, lequel est le plus compact ?", a: "Le Rhodium, car 4/60 (1/15) est plus grand que 8/180 (1/22,5)." },
-            { q: "Un composé cristallise en CFC avec A en (0;0;0) et B en (1/4;1/4;1/4) et (1/4;3/4;1/4). Quelle est sa formule chimique ?", a: "AB₂ (ou A₄B₈ dans la maille)." }
+            { q: "Combien d'atomes par maille y a-t-il dans une structure en mode F avec des atomes en (0;0;0) et (1/4;1/4;1/4) ?[span_297](start_span)[span_297](end_span)", a: "8 atomes par maille (2 positions justes nécessaires × 4 translations du mode F).[span_298](start_span)[span_298](end_span)" },
+            { q: "Dans une structure CFC d'atomes A, quelle est la coordinence d'un atome B situé en (1/2;0;0) ou (1/2;1/2;1/2) ?[span_299](start_span)[span_299](end_span)[span_300](start_span)[span_300](end_span)", a: "Coordinence 6 (car ce sont les positions des sites octaédriques).[span_301](start_span)[span_301](end_span)[span_302](start_span)[span_302](end_span)" },
+            { q: "Quel est l'empilement correspondant à une structure métallique hexagonale compacte (HC) ?[span_303](start_span)[span_303](end_span)", a: "Empilement ABAB (alors que le CFC est ABCABC).[span_304](start_span)[span_304](end_span)" },
+            { q: "De quoi dépend uniquement le décompte des atomes contenus dans une maille ?[span_305](start_span)[span_305](end_span)", a: "Uniquement de la position des atomes (sommet, arête, face, intérieur).[span_306](start_span)[span_306](end_span)" },
+            { q: "Sachant que le Rhodium (4 at/maille, V = 60 Å³) et le Germanium (8 at/maille, V = 180 Å³) ont un volume atomique similaire, lequel est le plus compact ?[span_307](start_span)[span_307](end_span)", a: "Le Rhodium, car 4/60 (1/15) est plus grand que 8/180 (1/22,5).[span_308](start_span)[span_308](end_span)" },
+            { q: "Un composé cristallise en CFC avec A en (0;0;0) et B en (1/4;1/4;1/4) et (1/4;3/4;1/4). Quelle est sa formule chimique ?[span_309](start_span)[span_309](end_span)", a: "AB₂ (ou A₄B₈ dans la maille).[span_310](start_span)[span_310](end_span)" }
         ];
 
         let currentQuizIndex = -1;
 
         function nextQuestion() {
             currentQuizIndex = (currentQuizIndex + 1) % quizData.length;
-            document.getElementById('quizQuestion').innerText = quizData[currentQuizIndex].q;
+            document.getElementById('quizQuestion').innerText = cleanStr(quizData[currentQuizIndex].q);
             let ansDiv = document.getElementById('quizAnswer');
-            ansDiv.innerText = quizData[currentQuizIndex].a;
+            ansDiv.innerText = cleanStr(quizData[currentQuizIndex].a);
             ansDiv.style.display = "none";
             document.getElementById('showAnsBtn').style.display = "inline-block";
             document.getElementById('nextQuizBtn').innerText = "Question Suivante →";
@@ -1044,9 +1239,249 @@
             document.getElementById('quizAnswer').style.display = "block";
         }
 
+        // =========================================================================
+        // BANQUE OFFICIELLE DES 48 QUESTIONS (2025 & 2024) POUR LE SIMULATEUR
+        // =========================================================================
+        const questions2025 = [
+            { q: "Combien y a-t-il de sites octaédriques dans une maille Cubique Faces Centrées ?[span_311](start_span)[span_311](end_span)", opts: ["8", "13", "12", "4"], ans: 3, exp: "Il y a 1 site Oh au centre du cube + 12 aux milieux des arêtes (partagés entre 4 mailles), soit $1 + 12 \\times 1/4 = 4$ sites Oh par maille CFC.[span_312](start_span)[span_312](end_span)" },
+            { q: "Dans une structure cubique contenant des atomes A en $(0;0;0)$, $(1/2;1/2;0)$, $(0;1/2;1/2)$ et $(1/2;0;1/2)$, quelle est la coordinence d'un atome B situé en $(1/2;0;0)$ ?[span_313](start_span)[span_313](end_span)", opts: ["8", "10", "12", "6", "4"], ans: 3, exp: "La position $(1/2;0;0)$ est le milieu d'une arête d'un réseau CFC : c'est un site octaédrique, donc sa coordinence est 6.[span_314](start_span)[span_314](end_span)" },
+            { q: "Un composé cristallise dans une structure CFC. Il est composé par des atomes A en $(0;0;0)$ et B en $(1/4;1/4;1/4)$ et $(1/4;3/4;1/4)$. Quelle est sa formule chimique ?[span_315](start_span)[span_315](end_span)", opts: ["$A_4B_8$", "$AB_2$", "$AB$", "$A_8B_8$"], ans: 1, exp: "En mode F (4 translations), 1 position de A donne 4 A et 2 positions de B donnent 8 B (maille $A_4B_8$), soit la formule chimique $AB_2$.[span_316](start_span)[span_316](end_span)" },
+            { q: "Le chrome cristallise selon la structure cubique centrée. Sachant que $a$ est le paramètre de maille, $N$ le nombre d'Avogadro et $M$ la masse molaire du chrome, l'expression de la masse volumique du chrome est :[span_317](start_span)[span_317](end_span)", opts: ["$2*M/(N*a^3)$", "$M*a^3/(2*N)$", "$4*M/(N*a^3)$", "$M/(4N*a^3)$"], ans: 0, exp: "En structure Cubique Centrée (CC), il y a $Z = 2$ atomes par maille, d'où $\\rho = 2M / (N \\cdot a^3)$.[span_318](start_span)[span_318](end_span)" },
+            { q: "Une structure cubique constituée d'un seul type d'atome possède des atomes aux sommets de la maille, aux milieux des faces et dans la moitié des sites tétraédriques. Combien de positions justes nécessaires faut-il pour définir cette structure ?[span_319](start_span)[span_319](end_span)", opts: ["1", "8", "3", "2", "18", "12"], ans: 3, exp: "En mode F (4 translations), la position $(0;0;0)$ génère les sommets et les faces (4 atomes) et $(1/4;1/4;1/4)$ génère la moitié des sites Td (4 atomes). Il faut donc 2 positions justes nécessaires.[span_320](start_span)[span_320](end_span)" },
+            { q: "Dans un cristal métallique cubique à faces centrées la tangence des atomes se fait selon :[span_321](start_span)[span_321](end_span)", opts: ["la diagonale du cube", "la diagonale d'une face du cube", "l'arête du cube"], ans: 1, exp: "En CFC, les atomes se touchent le long de la diagonale d'une face du cube ($4R = a\\sqrt{2}$).[span_322](start_span)[span_322](end_span)[span_323](start_span)[span_323](end_span)" },
+            { q: "Quel est l'empilement correspondant à une structure métallique hexagonale compacte ?[span_324](start_span)[span_324](end_span)", opts: ["ABBA", "ABCA", "ACAC", "ABAB"], ans: 3, exp: "L'empilement hexagonal compact (HC) est de type ABAB.[span_325](start_span)[span_325](end_span)" },
+            { q: "Le nombre de translations de réseau dans les structures cubiques P, I et F sont respectivement :[span_326](start_span)[span_326](end_span)", opts: ["1; 2 et 3", "1; 3 et 2", "1; 2 et 4", "1; 1 et 3"], ans: 2, exp: "Mode P = 1 translation ; Mode I = 2 translations ; Mode F = 4 translations.[span_327](start_span)[span_327](end_span)" },
+            { q: "Sachant que les structures du cuivre ($4\\text{ Cu/maille}$ ; $V_{\\text{atome}} = 7\\text{ Å}^3$) et du carbone ($8\\text{ C/maille}$ ; $V_{\\text{atome}} = 2\\text{ Å}^3$) sont cubiques à Faces centrées, laquelle sera la plus compacte ?[span_328](start_span)[span_328](end_span)", opts: ["le carbone", "presque identique", "le cuivre", "il manque des éléments pour répondre"], ans: 2, exp: "Le cuivre (CFC métallique pur) a une compacité maximale de $0,74$ contre $0,34$ pour le carbone diamant (nb : si on cherche un calcul direct, le volume de la maille $V_{\\text{maille}}$ n'est pas fourni dans l'énoncé).[span_329](start_span)[span_329](end_span)" },
+            { q: "Quel est le mode de réseau du composé AgPt cristallisant dans le système cubique, dont les positions atomiques sont $\\text{Ag}:(0;0;0)(1/2;1/2;0)$ ; $\\text{Pt}:(1/2;0;1/2)(0;1/2;1/2)$ ?[span_330](start_span)[span_330](end_span)", opts: ["Cubique simple", "P", "Cubique à faces centrées", "F"], ans: 1, exp: "Comme $\\text{Ag} \\neq \\text{Pt}$, les faces ne sont pas toutes occupées par le même élément chimique : le mode de réseau est P.[span_331](start_span)[span_331](end_span)" },
+            { q: "La compacité s'exprime :[span_332](start_span)[span_332](end_span)", opts: ["en $\\text{g}\\cdot\\text{cm}^{-3}$", "en $\\text{cm}^3$", "sans unité"], ans: 2, exp: "C'est un rapport de deux volumes ($V_{\\text{atomes}} / V_{\\text{maille}}$), donc sans unité.[span_333](start_span)[span_333](end_span)" },
+            { q: "Les cristaux périodiques sont formés par la répétition triplement périodique dans l'espace :[span_334](start_span)[span_334](end_span)", opts: ["d'un atome", "d'un noeud", "d'un motif", "d'une maille"], ans: 2, exp: "Définition du cours : répétition triplement périodique d'un motif.[span_335](start_span)[span_335](end_span)" },
+            { q: "Donner l'expression du rayon du site octaédrique ($R_s$) en fonction du rayon de l'atome ($R$), dans une structure métallique CFC :[span_336](start_span)[span_336](end_span)", opts: ["$R_s = (\\sqrt{3/2}-1)*R$", "$R_s = (\\sqrt{2}-1)*R$", "$R_s = (\\sqrt{2}-1)/R$"], ans: 1, exp: "Sur l'arête $a = 2\\sqrt{2}R$, on a $2R + 2R_s = a \\implies R_s = (\\sqrt{2}-1)*R$.[span_337](start_span)[span_337](end_span)" },
+            { q: "Combien d'atomes de magnésium y a-t-il dans une maille CFC dont le motif est $\\text{Mg}_2\\text{S}$ ?[span_338](start_span)[span_338](end_span)", opts: ["8", "2", "12", "4"], ans: 0, exp: "Une maille CFC comporte 4 nœuds (4 motifs). Avec 2 Mg par motif, on a $4 \\times 2 = 8$ atomes de Mg.[span_339](start_span)[span_339](end_span)" },
+            { q: "Considérant un atome en position $(1/4;1/2;1/4)$, quelle(s) autre(s) position(s) juste(s) nécessaire(s) s'attendrait-on à trouver pour un mode I :[span_340](start_span)[span_340](end_span)", opts: ["$(3/4;0;3/4)$", "$(1/2;1/2;1/2)$", "$(1/4;0;1/4)(3/4;1/2;1/4)(3/4;0;1/4)$", "Les autres positions se trouvent hors de la maille", "$(3/4;0;1/4)(3/4;1;1/4)$"], ans: 0, exp: "On ajoute $(+1/2;+1/2;+1/2)$ modulo 1 : $(1/4+1/2 ; 1/2+1/2 ; 1/4+1/2) = (3/4; 1; 3/4) \\equiv (3/4;0;3/4)$.[span_341](start_span)[span_341](end_span)" },
+            { q: "La coordinence du métal d'une structure cubique à faces centrées est :[span_342](start_span)[span_342](end_span)", opts: ["8", "14", "12", "6"], ans: 2, exp: "En structure compacte CFC (comme en HC), chaque atome a 12 plus proches voisins.[span_343](start_span)[span_343](end_span)" },
+            { q: "Le polyèdre de coordination du métal au centre d'une maille d'une structure cubique centrée est un :[span_344](start_span)[span_344](end_span)", opts: ["cube", "cubooctaèdre", "octaèdre"], ans: 0, exp: "L'atome central touche les 8 sommets de la maille cubique (coordinence 8 = cube).[span_345](start_span)[span_345](end_span)" },
+            { q: "L'expression littérale de la compacité d'une structure métallique cubique centrée est :[span_346](start_span)[span_346](end_span)", opts: ["$\\pi/(3\\sqrt{2})$", "$\\pi/(2\\sqrt{3})$", "$\\pi\\sqrt{3}/8$", "$(\\pi\\sqrt{2})/3$"], ans: 2, exp: "En CC ($Z=2$, $4R=a\\sqrt{3}$), la compacité vaut $\\pi\\sqrt{3}/8 \\approx 0,68$.[span_347](start_span)[span_347](end_span)" },
+            { q: "Dans un cristal métallique cubique centré la relation de tangence des atomes est :[span_348](start_span)[span_348](end_span)", opts: ["$2R = a\\sqrt{3}$", "$4R\\sqrt{3} = a$", "$4R = a\\sqrt{3}$", "$2R = 2a\\sqrt{3}$"], ans: 2, exp: "Les atomes se touchent sur la grande diagonale du cube de longueur $a\\sqrt{3}$, d'où $4R = a\\sqrt{3}$.[span_349](start_span)[span_349](end_span)" },
+            { q: "Combien d'atomes par maille y a-t-il dans une structure en mode de réseau F avec des atomes aux positions $(0;0;0)$ et $(1/4;1/4;1/4)$ ?[span_350](start_span)[span_350](end_span)", opts: ["4", "2", "8", "18"], ans: 2, exp: "2 positions justes nécessaires $\\times 4$ translations du mode F $= 8$ atomes par maille.[span_351](start_span)[span_351](end_span)" },
+            { q: "Quel est le bon ordre concernant l'évolution des tailles des sites interstitiels (cubique, octaédrique (Oh), tétraédrique (Td)) laissés par des atomes de même dimension ?[span_352](start_span)[span_352](end_span)", opts: ["site cubique > site Oh > site Td", "site Oh > site cubique > site Td", "site Oh < site Td < site cubique", "site Td < site cubique < site Oh"], ans: 0, exp: "$R_{\\text{cubique}} (0,732R) > R_{Oh} (0,414R) > R_{Td} (0,225R)$.[span_353](start_span)[span_353](end_span)" },
+            { q: "Un alliage AB cristallise dans le système cubique faces centrées, le rayon de $A = 2\\text{ Å}$ et le rayon de $B = 0,44\\text{ Å}$. B est dans les sites interstitiels laissés par A, quels sont les sites occupés par B ?[span_354](start_span)[span_354](end_span)", opts: ["Tous les sites octaédriques", "La moitié des sites octaédriques", "La moitié des sites tétraédriques", "Tous les sites tétraédriques"], ans: 2, exp: "Pour $R_A = 2\\text{ Å}$, $R_{Td} = 0,45\\text{ Å} \\approx 0,44\\text{ Å}$ (site Td). Comme la formule est AB (4 B pour 4 A) et qu'il y a 8 sites Td, B occupe la moitié des sites tétraédriques.[span_355](start_span)[span_355](end_span)" },
+            { q: "Le décompte des atomes contenus dans la maille dépend :[span_356](start_span)[span_356](end_span)", opts: ["du rapport volume des atomes/volume de la maille", "des rayons des atomes", "de la position des atomes", "du volume de la maille"], ans: 2, exp: "Il dépend uniquement de la position des atomes (sommet $1/8$, arête $1/4$, face $1/2$, intérieur $1$).[span_357](start_span)[span_357](end_span)" },
+            { q: "Quelle est la coordinence d'un atome placé au centre d'un cubooctaèdre ?[span_358](start_span)[span_358](end_span)", opts: ["4", "12", "6", "8"], ans: 1, exp: "Un cubooctaèdre possède 12 sommets équidistants (polyèdre de coordination du CFC, coordinence 12).[span_359](start_span)[span_359](end_span)" }
+        ];
+
+        const questions2024 = [
+            { q: "Considérant un atome en position $(1/4;1/2;3/4)$, quelle(s) autre(s) position(s) juste(s) nécessaire(s) s'attendrait-on à trouver pour un mode I :[span_360](start_span)[span_360](end_span)", opts: ["Les autres positions se trouvent hors de la maille", "$(1/4;0;1/4)(3/4;1/2;1/4)(3/4;0;3/4)$", "$(3/4;0;1/4)$", "$(3/4;0;1/4)(3/4;1;1/4)$", "$(1/2;1/2;1/2)$"], ans: 2, exp: "$(1/4+1/2 ; 1/2+1/2 ; 3/4+1/2) = (3/4 ; 1 ; 5/4) \\equiv (3/4 ; 0 ; 1/4)$ modulo 1.[span_361](start_span)[span_361](end_span)" },
+            { q: "L'expression littérale de la compacité d'une structure métallique cubique faces centrées est :[span_362](start_span)[span_362](end_span)", opts: ["$\\pi\\sqrt{3}/8$", "$(\\pi\\sqrt{2})/3$", "$\\pi/(3\\sqrt{2})$", "$\\pi/(2\\sqrt{3})$"], ans: 2, exp: "En CFC ($Z=4$, $4R=a\\sqrt{2}$), la compacité vaut $\\pi/(3\\sqrt{2}) \\approx 0,74$.[span_363](start_span)[span_363](end_span)" },
+            { q: "Dans un cristal métallique cubique centré la tangence des atomes se fait selon :[span_364](start_span)[span_364](end_span)", opts: ["la diagonale d'une face du cube", "la diagonale du cube", "l'arête du cube"], ans: 1, exp: "En CC, le contact se fait le long de la grande diagonale du cube ($4R = a\\sqrt{3}$).[span_365](start_span)[span_365](end_span)" },
+            { q: "Un composé cristallise dans une structure cubique Primitif. Il est composé par des atomes A en $(0;0;0)$, B en $(1/2;0;0)$ et $(0;1/2;0)$, et C en $(1/2;1/2;0)$, $(1/2;0;1/2)$ et $(0;1/2;1/2)$. Quelle est sa formule chimique ?[span_366](start_span)[span_366](end_span)", opts: ["$A_8B_8C_6$", "$AB_2C_3$", "$AB_2C_4$", "$ABC$"], ans: 1, exp: "En mode P (1 translation), chaque triplet dans $[0;1[$ compte pour 1 atome dans la maille : 1 A, 2 B et 3 C, soit $AB_2C_3$.[span_367](start_span)[span_367](end_span)" },
+            { q: "Quel est le mode de réseau du composé AuCu cristallisant dans le système cubique, dont les positions atomiques sont $\\text{Au}:(0;0;0)(1/2;1/2;0)$ ; $\\text{Cu}:(1/2;0;1/2)(0;1/2;1/2)$ ?[span_368](start_span)[span_368](end_span)", opts: ["P", "F", "Cubique à faces centrées", "Cubique simple"], ans: 0, exp: "Comme $\\text{Au} \\neq \\text{Cu}$, le mode de réseau est Primitif (P).[span_369](start_span)[span_369](end_span)" },
+            { q: "Dans le cas d'un alliage AB, le rayon de $A = 2\\text{ Å}$ et le rayon de $B = 0,44\\text{ Å}$ ; quel est le type d'alliage correspondant ?[span_370](start_span)[span_370](end_span)", opts: ["Alliage d'insertion", "Alliage de substitution"], ans: 0, exp: "Le rayon de B est beaucoup plus petit que celui de A ($R_B \\ll R_A$), c'est donc un alliage d'insertion.[span_371](start_span)[span_371](end_span)" },
+            { q: "La coordinence du métal d'une structure cubique simple est :[span_372](start_span)[span_372](end_span)", opts: ["8", "2", "12", "18", "6"], ans: 4, exp: "En cubique simple, chaque atome a 6 voisins directs le long des arêtes.[span_373](start_span)[span_373](end_span)" },
+            { q: "Quelle est la compacité maximale d'une structure composée d'un seul type d'atome ?[span_374](start_span)[span_374](end_span)", opts: ["0,68", "0,52", "0,74", "0,98", "Cela dépend de la nature de l'atome"], ans: 2, exp: "La compacité maximale pour des sphères identiques est $0,74$ (atteinte en CFC et HC).[span_375](start_span)[span_375](end_span)" },
+            { q: "Le chrome cristallise selon la structure cubique centrée. Sachant que $a$ est le paramètre de maille, $N$ le nombre d'Avogadro et $M$ la masse molaire du chrome, l'expression de la masse volumique du chrome est :[span_376](start_span)[span_376](end_span)", opts: ["$4*M/(N*a^3)$", "$M*a^3/(2*N)$", "$2*M/(N*a^3)$", "$M/(4N*a^3)$"], ans: 2, exp: "En structure CC, $Z = 2$, d'où $2*M/(N*a^3)$.[span_377](start_span)[span_377](end_span)" },
+            { q: "Quel est le bon ordre concernant l'évolution des tailles des sites interstitiels (cubique, octaédrique (Oh), tétraédrique (Td)) laissés par des atomes de même dimension ?[span_378](start_span)[span_378](end_span)", opts: ["site Oh < site Td < site cubique", "site cubique > site Oh > site Td", "site Td < site cubique < site Oh", "site Oh > site cubique > site Td"], ans: 1, exp: "site cubique ($0,732R$) > site Oh ($0,414R$) > site Td ($0,225R$).[span_379](start_span)[span_379](end_span)" },
+            { q: "Le nombre de translations de réseau dans les structures cubiques P, I et F sont respectivement :[span_380](start_span)[span_380](end_span)", opts: ["1; 2 et 3", "1; 1 et 3", "1; 3 et 2", "1; 2 et 4"], ans: 3, exp: "Mode P = 1 ; Mode I = 2 ; Mode F = 4.[span_381](start_span)[span_381](end_span)" },
+            { q: "Combien d'atomes par maille y a-t-il dans une structure en mode de réseau F avec des atomes aux positions $(0;0;0)$ et $(1/2;0;0)$ ?[span_382](start_span)[span_382](end_span)", opts: ["4", "8"], ans: 1, exp: "2 positions justes nécessaires $\\times 4$ translations du mode F $= 8$ atomes par maille.[span_383](start_span)[span_383](end_span)" },
+            { q: "Donner l'expression du rayon du site octaédrique ($R_s$) en fonction du rayon de l'atome ($R$), dans une structure métallique CFC :[span_384](start_span)[span_384](end_span)", opts: ["$R_s = (\\sqrt{3/2}-1)*R$", "$R_s = (\\sqrt{2}-1)*R$", "$R_s = (\\sqrt{2}-1)/(2R)$"], ans: 1, exp: "En CFC, $R_s = (\\sqrt{2}-1)*R \\approx 0,414R$.[span_385](start_span)[span_385](end_span)" },
+            { q: "Dans le cas d'un alliage d'insertion de formule AB cristallisant dans le système cubique faces centrées, B est dans les sites interstitiels laissés par A, quels sont les sites occupés par B ?[span_386](start_span)[span_386](end_span)", opts: ["Tous les sites tétraédriques", "Tous les sites octaédriques", "Tous les sites cubiques"], ans: 1, exp: "Il y a 4 atomes A par maille CFC. Pour avoir la formule AB (4 atomes B) en remplissant tous les sites d'un type, B occupe tous les sites octaédriques (4 par maille).[span_387](start_span)[span_387](end_span)" },
+            { q: "Le polyèdre de coordination du métal au centre d'une maille d'une structure cubique centrée est :[span_388](start_span)[span_388](end_span)", opts: ["cubooctaèdre", "octaèdre", "cubique"], ans: 2, exp: "Entouré des 8 sommets du cube, son polyèdre est cubique.[span_389](start_span)[span_389](end_span)" },
+            { q: "Dans un alliage binaire AB, les atomes A occupent la position $(0;0;0)$ et les atomes B la position $(1/2;1/2;1/2)$ de la maille. Quel est le mode de réseau de cet alliage ?[span_390](start_span)[span_390](end_span)", opts: ["Mode I", "Mode P", "Mode C", "Mode F"], ans: 1, exp: "Comme $\\text{A} \\neq \\text{B}$, le centre n'est pas équivalent au sommet par translation : c'est un Mode P.[span_391](start_span)[span_391](end_span)" },
+            { q: "Dans un cristal métallique cubique faces centrées la relation de tangence des atomes est :[span_392](start_span)[span_392](end_span)", opts: ["$4R = 2a\\sqrt{2}$", "$4R = a\\sqrt{3}$", "aucune des réponses proposées", "$4R = a\\sqrt{2}$"], ans: 3, exp: "Contact le long de la diagonale d'une face : $4R = a\\sqrt{2}$.[span_393](start_span)[span_393](end_span)" },
+            { q: "Dans le cas d'un alliage AB, le rayon de $A = 2\\text{ Å}$ et le rayon de $B = 0,8\\text{ Å}$ ; quel est le type de site occupé par B ?[span_394](start_span)[span_394](end_span)", opts: ["Le site tétraédrique", "Le site cubique", "Le site octaédrique"], ans: 2, exp: "Pour $R_A = 2\\text{ Å}$, $R_{Oh} = 0,414 \\times 2 = 0,828\\text{ Å} \\ge 0,8\\text{ Å}$, donc B occupe le site octaédrique.[span_395](start_span)[span_395](end_span)" },
+            { q: "Quel est le polyèdre de coordination d'un atome en coordinence 8 ?[span_396](start_span)[span_396](end_span)", opts: ["Cube", "Tétraèdre", "Icosaèdre", "cuboctaèdre", "Octaèdre"], ans: 0, exp: "La coordinence 8 correspond aux 8 sommets d'un Cube.[span_397](start_span)[span_397](end_span)" },
+            { q: "La coordinence du métal d'une structure hexagonale compacte est :[span_398](start_span)[span_398](end_span)", opts: ["8", "12", "6"], ans: 1, exp: "En structure hexagonale compacte (HC), la coordinence est de 12.[span_399](start_span)[span_399](end_span)" },
+            { q: "La compacité correspond au :[span_400](start_span)[span_400](end_span)", opts: ["volume de la maille sur le volume occupé par les atomes dans la maille", "taux de remplissage de la maille", "vide laissé par les atomes"], ans: 1, exp: "La compacité mesure le taux de remplissage de la maille.[span_401](start_span)[span_401](end_span)" },
+            { q: "Combien y a-t-il de sites octaédriques dans une maille Cubique Faces Centrées ?[span_402](start_span)[span_402](end_span)", opts: ["8", "12", "4", "13"], ans: 2, exp: "$1$ (centre) $+ 12 \\times 1/4$ (arêtes) $= 4$ sites octaédriques par maille CFC.[span_403](start_span)[span_403](end_span)" },
+            { q: "Dans une structure cubique contenant des atomes A en $(0;0;0)$, $(1/2;1/2;0)$, $(0;1/2;1/2)$ et $(1/2;0;1/2)$, quelle est la coordinence d'un atome B situé en $(1/2;1/2;1/2)$ ?[span_404](start_span)[span_404](end_span)", opts: ["8", "12", "10", "4", "6"], ans: 4, exp: "La position $(1/2;1/2;1/2)$ est le site octaédrique central de la maille CFC, entouré des 6 centres de faces : sa coordinence est 6.[span_405](start_span)[span_405](end_span)" },
+            { q: "Sachant que le Rhodium ($4\\text{ at/maille}$, $V = 60\\text{ Å}^3$) et le Germanium ($8\\text{ at/maille}$, $V_{\\text{maille}} = 180\\text{ Å}^3$) ont un volume atomique similaire, quelle est la maille la plus compacte ?[span_406](start_span)[span_406](end_span)", opts: ["il manque des éléments pour répondre", "presque identique", "le Germanium", "le Rhodium"], ans: 3, exp: "$C_{\\text{Rh}} = 4/60 = 1/15 > C_{\\text{Ge}} = 8/180 = 1/22,5$ : c'est donc le Rhodium.[span_407](start_span)[span_407](end_span)" }
+        ];
+
+        let activeSimQuestions = [];
+        let userSimAnswers = [];
+        let simTimerInterval = null;
+        let simSecondsRemaining = 45 * 60;
+        let isSimSubmitted = false;
+
+        function startExamSimulation() {
+            let mode = document.getElementById('simModeSelect').value;
+            let titleEl = document.getElementById('simModeTitle');
+
+            if (mode === '2025') {
+                activeSimQuestions = questions2025.map(q => ({ ...q }));
+                titleEl.innerText = "Sujet Officiel — 21 Octobre 2025 (24 questions)";
+            } else if (mode === '2024') {
+                activeSimQuestions = questions2024.map(q => ({ ...q }));
+                titleEl.innerText = "Sujet Officiel — 22 Octobre 2024 (24 questions)";
+            } else {
+                // Mélange aléatoire sans doublons
+                let combined = [...questions2025, ...questions2024];
+                for (let i = combined.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [combined[i], combined[j]] = [combined[j], combined[i]];
+                }
+                activeSimQuestions = combined.slice(0, 24).map(q => ({ ...q }));
+                titleEl.innerText = "Mélange Aléatoire (24 questions - Annales 2024 & 2025)";
+            }
+
+            userSimAnswers = new Array(24).fill(null);
+            isSimSubmitted = false;
+            simSecondsRemaining = 45 * 60;
+
+            document.getElementById('simSetup').style.display = "none";
+            document.getElementById('simActiveArea').style.display = "block";
+            document.getElementById('simScoreBanner').style.display = "none";
+            document.getElementById('simSubmitBtn').style.display = "inline-block";
+
+            renderSimQuestions();
+            updateSimProgress();
+            updateSimTimerDisplay();
+
+            if (simTimerInterval) clearInterval(simTimerInterval);
+            simTimerInterval = setInterval(() => {
+                simSecondsRemaining--;
+                updateSimTimerDisplay();
+                if (simSecondsRemaining <= 0) {
+                    clearInterval(simTimerInterval);
+                    submitExamSimulation();
+                }
+            }, 1000);
+        }
+
+        function updateSimTimerDisplay() {
+            let mins = Math.floor(simSecondsRemaining / 60);
+            let secs = simSecondsRemaining % 60;
+            let timerEl = document.getElementById('simTimerDisplay');
+            timerEl.innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+            if (simSecondsRemaining < 300) {
+                timerEl.style.background = "#dc2626";
+            } else if (simSecondsRemaining < 600) {
+                timerEl.style.background = "#d97706";
+            } else {
+                timerEl.style.background = "rgba(255, 255, 255, 0.15)";
+            }
+        }
+
+        function renderSimQuestions() {
+            let container = document.getElementById('simQuestionsList');
+            let html = "";
+
+            activeSimQuestions.forEach((item, qIdx) => {
+                let optsHtml = "";
+                item.opts.forEach((optText, oIdx) => {
+                    optsHtml += `
+                        <button type="button" class="sim-opt-btn" id="sim-opt-${qIdx}-${oIdx}" onclick="selectSimOption(${qIdx}, ${oIdx})">
+                            <span class="sim-box-check"></span>
+                            <span>${cleanStr(optText)}</span>
+                        </button>
+                    `;
+                });
+
+                html += `
+                    <div class="sim-q-card" id="sim-qcard-${qIdx}">
+                        <div class="sim-q-title">Question ${qIdx + 1} : ${cleanStr(item.q)}</div>
+                        <div class="sim-options">${optsHtml}</div>
+                        <div class="sim-explanation" id="sim-exp-${qIdx}">
+                            <strong>Correction :</strong> ${cleanStr(item.exp)}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            renderMath();
+        }
+
+        function selectSimOption(qIdx, oIdx) {
+            if (isSimSubmitted) return;
+            userSimAnswers[qIdx] = oIdx;
+
+            let item = activeSimQuestions[qIdx];
+            for (let i = 0; i < item.opts.length; i++) {
+                let btn = document.getElementById(`sim-opt-${qIdx}-${i}`);
+                if (i === oIdx) btn.classList.add('selected');
+                else btn.classList.remove('selected');
+            }
+            updateSimProgress();
+        }
+
+        function updateSimProgress() {
+            let answeredCount = userSimAnswers.filter(x => x !== null).length;
+            document.getElementById('simProgressText').innerText = `${answeredCount} / 24 questions répondues`;
+        }
+
+        function submitExamSimulation() {
+            if (isSimSubmitted) return;
+            isSimSubmitted = true;
+            if (simTimerInterval) clearInterval(simTimerInterval);
+
+            let rawScore = 0;
+
+            activeSimQuestions.forEach((item, qIdx) => {
+                let userChoice = userSimAnswers[qIdx];
+                let card = document.getElementById(`sim-qcard-${qIdx}`);
+                let expDiv = document.getElementById(`sim-exp-${qIdx}`);
+
+                if (userChoice === item.ans) {
+                    rawScore++;
+                    card.classList.add('correct');
+                } else {
+                    card.classList.add('wrong');
+                }
+
+                for (let oIdx = 0; oIdx < item.opts.length; oIdx++) {
+                    let btn = document.getElementById(`sim-opt-${qIdx}-${oIdx}`);
+                    btn.disabled = true;
+                    if (oIdx === item.ans) {
+                        btn.classList.add('opt-correct');
+                    } else if (userChoice === oIdx && userChoice !== item.ans) {
+                        btn.classList.add('opt-wrong');
+                    }
+                }
+
+                expDiv.style.display = "block";
+            });
+
+            let finalGrade20 = Math.min(20, rawScore);
+            let timeSpent = (45 * 60) - simSecondsRemaining;
+            let minsSpent = Math.floor(timeSpent / 60);
+            let secsSpent = timeSpent % 60;
+
+            let banner = document.getElementById('simScoreBanner');
+            banner.style.display = "block";
+            if (finalGrade20 >= 16) {
+                banner.style.background = "#dcfce7";
+                banner.style.border = "2px solid #16a34a";
+                banner.style.color = "#14532d";
+            } else if (finalGrade20 >= 10) {
+                banner.style.background = "#fef9c3";
+                banner.style.border = "2px solid #ca8a04";
+                banner.style.color = "#713f12";
+            } else {
+                banner.style.background = "#fee2e2";
+                banner.style.border = "2px solid #dc2626";
+                banner.style.color = "#7f1d1d";
+            }
+
+            banner.innerHTML = `
+                <h3 style="font-size: 1.6rem; margin-bottom: 6px;">Note Finale : ${finalGrade20} / 20</h3>
+                <p style="font-size: 1.05rem; font-weight: 600;">Score brut : ${rawScore} / 24 bonnes réponses • Temps utilisé : ${minsSpent} min ${secsSpent} s</p>
+                <p style="font-size: 0.9rem; margin-top: 6px;">Consulte le détail de tes réponses et les explications ci-dessous.</p>
+            `;
+
+            document.getElementById('simSubmitBtn').style.display = "none";
+            banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            renderMath();
+        }
+
+        function resetExamSimulation() {
+            if (simTimerInterval) clearInterval(simTimerInterval);
+            document.getElementById('simActiveArea').style.display = "none";
+            document.getElementById('simSetup').style.display = "block";
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
-            // Nettoyage automatique d'éventuelles balises d'annotation pour un affichage parfait
-            document.body.innerHTML = document.body.innerHTML.replace(/\s*\[cite:\s*[\d,\s]+\]/g, '');
+            document.body.innerHTML = cleanStr(document.body.innerHTML);
             updateCard();
             runCalculator();
             renderMath();
